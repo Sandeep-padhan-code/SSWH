@@ -1,0 +1,16 @@
+import React, { useEffect, useState } from 'react'
+import { tankService } from '@/services/tankService'
+import { Tank } from '@/types'
+import { DetailSheet } from '@/components/common/DetailSheet'
+import { LoadingState } from '@/components/ui/LoadingState'
+
+export const TanksPage = () => {
+  const [tanks, setTanks] = useState<Tank[]>([]); const [selected, setSelected] = useState<Tank | null>(null)
+  useEffect(() => { tankService.getAllTanks().then(setTanks) }, [])
+  if (!tanks.length) return <LoadingState height="h-72" message="Loading storage status…" />
+  return <div className="space-y-6 pb-6"><header className="border-b border-[#DDE6E2] pb-6"><p className="text-xs font-semibold uppercase tracking-[.14em] text-[#075B48]">Facility reserves</p><h1 className="mt-1 text-3xl font-semibold tracking-tight text-[#10231F]">Storage</h1><p className="mt-2 text-sm text-[#63736E]">Current availability across raw, clean, wastewater, and reuse water storage.</p></header>
+    <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{tanks.map(tank => <button key={tank.id} onClick={() => setSelected(tank)} className="rounded-xl border border-[#DDE6E2] bg-white p-5 text-left transition hover:-translate-y-0.5 hover:border-[#075B48] hover:shadow-sm"><div className="flex items-center justify-between"><span className="text-xs font-semibold uppercase tracking-wider text-[#63736E]">{tank.id}</span><span className="text-xs text-[#075B48]">● Normal</span></div><h2 className="mt-4 text-lg font-semibold text-[#10231F]">{tank.name.replace(/^T\d /, '')}</h2><p className="mt-1 text-xs text-[#63736E]">{tank.role}</p><p className="mt-6 font-mono text-2xl font-semibold text-[#10231F]">{tank.currentQuantity.toFixed(1)} <span className="text-sm font-normal">/ {tank.capacity.toFixed(1)} L</span></p><div className="mt-4 h-2 overflow-hidden rounded-full bg-[#EDF2F0]"><div className="h-full rounded-full bg-[#075B48]" style={{ width: `${tank.percentage}%` }} /></div><p className="mt-2 text-right text-xs text-[#63736E]">{tank.percentage}% full</p></button>)}</section>
+    <p className="rounded-lg bg-[#E8F5F0] px-4 py-3 text-sm text-[#075B48]">Select a storage vessel for flow, level, threshold, and sensor details.</p>
+    {selected && <DetailSheet title={selected.name} eyebrow="Storage detail" onClose={() => setSelected(null)}><p className="text-sm text-[#075B48]">● Normal</p><p className="mt-6 font-mono text-3xl font-semibold text-[#10231F]">{selected.currentQuantity.toFixed(1)} / {selected.capacity.toFixed(1)} L</p><div className="mt-3 h-2 overflow-hidden rounded-full bg-[#EDF2F0]"><div className="h-full rounded-full bg-[#075B48]" style={{width:`${selected.percentage}%`}} /></div><div className="mt-7 grid grid-cols-2 gap-3">{[['Inflow', `${selected.inflowRate} L/min`],['Outflow',`${selected.outflowRate} L/min`],['Sensor',selected.sensorId],['Updated',selected.lastUpdated]].map(([l,v])=><div key={l} className="rounded-lg bg-[#F7F9F8] p-3"><p className="text-[11px] uppercase tracking-wider text-[#63736E]">{l}</p><p className="mt-1 font-mono text-xs font-semibold text-[#10231F]">{v}</p></div>)}</div><button className="mt-7 rounded-md bg-[#075B48] px-4 py-2.5 text-sm font-medium text-white">View history</button></DetailSheet>}
+  </div>
+}
