@@ -4,7 +4,7 @@ import { AuthProvider, useAuth } from '@/auth/AuthContext'
 import { ProtectedRoute } from '@/auth/ProtectedRoute'
 import { MainLayout } from '@/components/layout/MainLayout'
 import { AuthLayout } from '@/components/layout/AuthLayout'
-import { dashboardPathForRole } from '@/auth/permissions'
+import { getDashboardRoute } from '@/auth/permissions'
 
 // Landing Entry Experience
 import { LandingPage } from '@/pages/LandingPage'
@@ -42,7 +42,7 @@ import { ResetPasswordPage } from '@/pages/auth/ResetPasswordPage'
 const RoleDashboardRedirect: React.FC = () => {
   const { user } = useAuth()
   if (!user) return <Navigate to="/login" replace />
-  return <Navigate to={dashboardPathForRole(user.role)} replace />
+  return <Navigate to={getDashboardRoute(user.role)} replace />
 }
 
 export function App() {
@@ -67,11 +67,16 @@ export function App() {
               {/* Central Dashboard Redirect */}
               <Route path="/dashboard" element={<RoleDashboardRedirect />} />
 
-              {/* Explicit Role-Based Dashboards */}
+              {/* Direct Path Aliases */}
+              <Route path="/scada" element={<Navigate to="/scada/dashboard" replace />} />
+              <Route path="/facilities" element={<Navigate to="/facilities/dashboard" replace />} />
+              <Route path="/tenant" element={<Navigate to="/tenant/dashboard" replace />} />
+
+              {/* Strict Role-Restricted Dashboards */}
               <Route
                 path="/scada/dashboard"
                 element={
-                  <ProtectedRoute allowedRoles={['SCADA', 'ADMIN']}>
+                  <ProtectedRoute allowedRoles={['scada_operator', 'SCADA', 'ADMIN']}>
                     <ScadaDashboardPage />
                   </ProtectedRoute>
                 }
@@ -79,7 +84,13 @@ export function App() {
               <Route
                 path="/facilities/dashboard"
                 element={
-                  <ProtectedRoute allowedRoles={['FACILITIES_LEAD', 'BUILDING_MANAGER', 'SCADA', 'ADMIN']}>
+                  <ProtectedRoute
+                    allowedRoles={[
+                      'facilities_lead',
+                      'FACILITIES_LEAD',
+                      'BUILDING_MANAGER',
+                    ]}
+                  >
                     <FacilitiesDashboardPage />
                   </ProtectedRoute>
                 }
@@ -89,12 +100,9 @@ export function App() {
                 element={
                   <ProtectedRoute
                     allowedRoles={[
+                      'tenant_observer',
                       'TENANT_OBSERVER',
                       'RESIDENT',
-                      'FACILITIES_LEAD',
-                      'BUILDING_MANAGER',
-                      'SCADA',
-                      'ADMIN',
                     ]}
                   >
                     <TenantDashboardPage />
@@ -106,7 +114,7 @@ export function App() {
               <Route
                 path="/live-operations"
                 element={
-                  <ProtectedRoute allowedRoles={['SCADA', 'ADMIN']}>
+                  <ProtectedRoute allowedRoles={['scada_operator', 'SCADA', 'ADMIN']}>
                     <LiveOperationsPage />
                   </ProtectedRoute>
                 }
@@ -114,7 +122,7 @@ export function App() {
               <Route
                 path="/process-flow"
                 element={
-                  <ProtectedRoute allowedRoles={['SCADA', 'ADMIN']}>
+                  <ProtectedRoute allowedRoles={['scada_operator', 'SCADA', 'ADMIN']}>
                     <ProcessFlowPage />
                   </ProtectedRoute>
                 }
@@ -130,7 +138,16 @@ export function App() {
               <Route
                 path="/devices"
                 element={
-                  <ProtectedRoute allowedRoles={['SCADA', 'FACILITIES_LEAD', 'ADMIN', 'BUILDING_MANAGER']}>
+                  <ProtectedRoute
+                    allowedRoles={[
+                      'scada_operator',
+                      'SCADA',
+                      'facilities_lead',
+                      'FACILITIES_LEAD',
+                      'ADMIN',
+                      'BUILDING_MANAGER',
+                    ]}
+                  >
                     <DevicesPage />
                   </ProtectedRoute>
                 }
@@ -144,7 +161,7 @@ export function App() {
               <Route
                 path="/users"
                 element={
-                  <ProtectedRoute allowedRoles={['SCADA', 'ADMIN']}>
+                  <ProtectedRoute allowedRoles={['scada_operator', 'SCADA', 'ADMIN']}>
                     <UsersPage />
                   </ProtectedRoute>
                 }
@@ -152,7 +169,16 @@ export function App() {
               <Route
                 path="/settings"
                 element={
-                  <ProtectedRoute allowedRoles={['SCADA', 'FACILITIES_LEAD', 'ADMIN', 'BUILDING_MANAGER']}>
+                  <ProtectedRoute
+                    allowedRoles={[
+                      'scada_operator',
+                      'SCADA',
+                      'facilities_lead',
+                      'FACILITIES_LEAD',
+                      'ADMIN',
+                      'BUILDING_MANAGER',
+                    ]}
+                  >
                     <SettingsPage />
                   </ProtectedRoute>
                 }

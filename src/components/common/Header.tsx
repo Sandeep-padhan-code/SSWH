@@ -13,8 +13,9 @@ import {
   Cpu,
   AlertTriangle,
   Activity,
-  Check,
   LogOut,
+  UserCheck,
+  MapPin,
 } from 'lucide-react'
 import { UserRole, Alert } from '@/types'
 import { NotificationPanel } from './NotificationPanel'
@@ -28,7 +29,6 @@ import { useAuth } from '@/auth/AuthContext'
 export interface HeaderProps {
   onMenuToggle: () => void
   currentRole: UserRole
-  onRoleChange?: (role: UserRole) => void
   activeAlertCount?: number
   onSearch?: (term: string) => void
   userName?: string
@@ -38,23 +38,22 @@ export interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   onMenuToggle,
   currentRole,
-  onRoleChange,
   onSearch,
   userName,
   onSignOut,
 }) => {
   const navigate = useNavigate()
-  const { switchRole } = useAuth()
+  const { user, signOut } = useAuth()
   const [searchTerm, setSearchTerm] = useState('')
-  const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false)
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [alerts, setAlerts] = useState<Alert[]>(mockAlerts)
   const [isSearchFocused, setIsSearchFocused] = useState(false)
   const searchRef = useRef<HTMLDivElement>(null)
-  const roleDropdownRef = useRef<HTMLDivElement>(null)
+  const profileDropdownRef = useRef<HTMLDivElement>(null)
 
   const activeAlertCount = alerts.filter((a) => !a.isResolved).length
-  const normalizedRole = normalizeRole(currentRole)
+  const normalizedRole = normalizeRole(user?.role || currentRole)
 
   const handleResolveAlert = (id: string) => {
     setAlerts((prev) =>
@@ -67,8 +66,11 @@ export const Header: React.FC<HeaderProps> = ({
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
         setIsSearchFocused(false)
       }
-      if (roleDropdownRef.current && !roleDropdownRef.current.contains(e.target as Node)) {
-        setIsRoleDropdownOpen(false)
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(e.target as Node)
+      ) {
+        setIsProfileOpen(false)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
@@ -105,19 +107,58 @@ export const Header: React.FC<HeaderProps> = ({
       : []
 
   const roleConfigs = {
-    SCADA: { label: 'SCADA Operator', icon: Shield, badge: 'Full Control' },
-    FACILITIES_LEAD: { label: 'Facilities Lead', icon: Building, badge: 'Analytics & Maint' },
-    TENANT_OBSERVER: { label: 'Tenant Observer', icon: Home, badge: 'Read-Only' },
+    scada_operator: {
+      label: 'SCADA Operator',
+      icon: Shield,
+      badge: 'Full Operational Control',
+      badgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    },
+    facilities_lead: {
+      label: 'Facilities Lead',
+      icon: Building,
+      badge: 'Analytics & Maintenance',
+      badgeClass: 'bg-cyan-50 text-cyan-800 border-cyan-200',
+    },
+    tenant_observer: {
+      label: 'Tenant Observer',
+      icon: Home,
+      badge: 'Read-Only Resident Scope',
+      badgeClass: 'bg-slate-100 text-slate-800 border-slate-200',
+    },
+    SCADA: {
+      label: 'SCADA Operator',
+      icon: Shield,
+      badge: 'Full Operational Control',
+      badgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    },
+    FACILITIES_LEAD: {
+      label: 'Facilities Lead',
+      icon: Building,
+      badge: 'Analytics & Maintenance',
+      badgeClass: 'bg-cyan-50 text-cyan-800 border-cyan-200',
+    },
+    TENANT_OBSERVER: {
+      label: 'Tenant Observer',
+      icon: Home,
+      badge: 'Read-Only Resident Scope',
+      badgeClass: 'bg-slate-100 text-slate-800 border-slate-200',
+    },
   }
 
-  const CurrentRoleIcon = roleConfigs[normalizedRole].icon
+  const CurrentRoleIcon = roleConfigs[normalizedRole]?.icon || Shield
+  const currentConfig = roleConfigs[normalizedRole] || roleConfigs.tenant_observer
 
-  const handleSelectRole = (r: 'SCADA' | 'FACILITIES_LEAD' | 'TENANT_OBSERVER') => {
-    switchRole(r)
-    if (onRoleChange) onRoleChange(r)
-    setIsRoleDropdownOpen(false)
-    navigate(dashboardPathForRole(r))
+  const handleSignOut = () => {
+    if (onSignOut) {
+      onSignOut()
+    } else {
+      signOut()
+      navigate('/login', { replace: true })
+    }
   }
+
+  const displayName = user?.fullName || user?.name || userName || 'Authenticated User'
+  const userEmail = user?.email || 'user@sswh.io'
 
   return (
     <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur border-b border-[#DDE6E2] px-4 lg:px-6">
@@ -132,7 +173,7 @@ export const Header: React.FC<HeaderProps> = ({
             <Menu className="h-5 w-5" />
           </button>
 
-          <Link to={dashboardPathForRole(currentRole)} className="flex items-center gap-2.5 text-decoration-none">
+          <Link to={dashboardPathForRole(normalizedRole)} className="flex items-center gap-2.5 text-decoration-none">
             <div className="h-8 w-8 rounded bg-[#0F4D3A] flex items-center justify-center text-white shadow-sm">
               <Droplets className="h-4.5 w-4.5 text-[#B9DDDD]" />
             </div>
@@ -197,7 +238,7 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
 
-        {/* Right: Notifications & Role Context Switcher */}
+        {/* Right: Notifications & Authoritative User Identity Display */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Alarm Notifications Button */}
           <div className="relative">
@@ -225,59 +266,92 @@ export const Header: React.FC<HeaderProps> = ({
 
           <div className="h-4 w-px bg-[#D6E3DD] hidden sm:block" />
 
-          {/* Role Context Dropdown */}
-          <div ref={roleDropdownRef} className="relative">
+          {/* Authoritative User Identity Display (Non-Interactive Role Context) */}
+          <div ref={profileDropdownRef} className="relative">
             <button
-              onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-              className="flex items-center gap-2 px-2.5 py-1.5 rounded border border-[#D6E3DD] bg-white hover:bg-[#F4F8F5] text-xs font-medium text-[#10251F] cursor-pointer transition-colors"
-              aria-expanded={isRoleDropdownOpen}
-              aria-label="Change role context"
+              onClick={() => setIsProfileOpen(!isProfileOpen)}
+              className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-[#D6E3DD] bg-white hover:bg-[#F4F8F5] text-xs font-medium text-[#10251F] cursor-pointer transition-colors"
+              aria-expanded={isProfileOpen}
+              aria-label="User account identity"
             >
-              <CurrentRoleIcon className="h-3.5 w-3.5 text-[#0F4D3A]" />
-              <span className="hidden sm:inline">{roleConfigs[normalizedRole].label}</span>
+              <div className="h-5 w-5 rounded-full bg-[#E4F5EE] border border-[#D6E3DD] flex items-center justify-center text-[#0F4D3A]">
+                <CurrentRoleIcon className="h-3 w-3" />
+              </div>
+              <div className="text-left hidden sm:block">
+                <span className="font-semibold block text-[11px] leading-tight text-[#10251F]">
+                  {displayName}
+                </span>
+                <span className="text-[10px] text-[#587068] font-mono leading-none">
+                  {currentConfig.label}
+                </span>
+              </div>
               <ChevronDown className="h-3.5 w-3.5 text-[#587068]" />
             </button>
 
-            {isRoleDropdownOpen && (
-              <div className="absolute right-0 mt-1 w-64 bg-white border border-[#D6E3DD] rounded shadow-md z-50 p-1">
-                <div className="px-2 py-1.5 text-[10px] font-bold text-[#587068] uppercase tracking-wider">
-                  Switch Authenticated Role Context
+            {/* Account Details & Session Menu */}
+            {isProfileOpen && (
+              <div className="absolute right-0 mt-1.5 w-72 bg-white border border-[#D6E3DD] rounded-xl shadow-xl z-50 p-2 text-xs divide-y divide-[#E5EEE9]">
+                {/* Account Profile Summary */}
+                <div className="p-2 space-y-1">
+                  <div className="flex items-center gap-2">
+                    <div className="h-8 w-8 rounded-full bg-[#0F4D3A] text-white flex items-center justify-center font-bold text-xs">
+                      {displayName.charAt(0).toUpperCase()}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold text-slate-900 truncate text-xs">{displayName}</p>
+                      <p className="text-[11px] text-slate-500 font-mono truncate">{userEmail}</p>
+                    </div>
+                  </div>
                 </div>
-                {(['SCADA', 'FACILITIES_LEAD', 'TENANT_OBSERVER'] as const).map((r) => {
-                  const cfg = roleConfigs[r]
-                  const Icon = cfg.icon
-                  const isSelected = normalizedRole === r
-                  return (
-                    <button
-                      key={r}
-                      onClick={() => handleSelectRole(r)}
-                      className={`w-full text-left px-2 py-1.5 rounded flex items-center justify-between text-xs cursor-pointer ${
-                        isSelected
-                          ? 'bg-[#E4F5EE] font-semibold text-[#0F4D3A]'
-                          : 'text-[#3F514B] hover:bg-[#F4F8F5]'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        <Icon className={`h-3.5 w-3.5 ${isSelected ? 'text-[#0F4D3A]' : 'text-[#71877F]'}`} />
-                        <span>{cfg.label}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] text-[#587068] font-mono">{cfg.badge}</span>
-                        {isSelected && <Check className="h-3 w-3 text-[#0F4D3A]" />}
-                      </div>
-                    </button>
-                  )
-                })}
 
-                {onSignOut && (
+                {/* Assigned Operational Scope & Role */}
+                <div className="p-2 space-y-2">
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                      Assigned Role
+                    </span>
+                    <div className="mt-1 flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <CurrentRoleIcon className="h-3.5 w-3.5 text-[#0F4D3A]" />
+                        <span className="font-semibold text-slate-900 text-xs">{currentConfig.label}</span>
+                      </div>
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono font-medium border ${currentConfig.badgeClass}`}>
+                        {currentConfig.badge}
+                      </span>
+                    </div>
+                  </div>
+
+                  {(user?.apartment || user?.buildingName || user?.facilityId) && (
+                    <div>
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                        Assigned Data Scope
+                      </span>
+                      <div className="mt-1 flex items-center gap-1.5 text-[11px] text-slate-700 bg-slate-50 p-1.5 rounded border border-slate-100">
+                        <MapPin className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+                        <span className="truncate">
+                          {user?.apartment ? `${user.apartment}, ` : ''}
+                          {user?.buildingName || user?.facilityId || 'Global Facility'}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex items-center gap-1.5 text-[10px] text-emerald-700 font-medium">
+                    <UserCheck className="h-3 w-3 text-emerald-600" />
+                    <span>Authoritative Session Active</span>
+                  </div>
+                </div>
+
+                {/* Sign Out Action */}
+                <div className="pt-1">
                   <button
-                    onClick={onSignOut}
-                    className="mt-1 flex w-full items-center gap-2 border-t border-[#DDE6E2] px-2 py-2 text-left text-xs text-[#C83D3D] hover:bg-[#FFF8F8]"
+                    onClick={handleSignOut}
+                    className="w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs text-rose-700 hover:bg-rose-50 font-medium cursor-pointer transition-colors"
                   >
-                    <LogOut className="h-3.5 w-3.5" />
-                    Sign out {userName ? `(${userName})` : ''}
+                    <LogOut className="h-3.5 w-3.5 text-rose-600" />
+                    Sign out
                   </button>
-                )}
+                </div>
               </div>
             )}
           </div>

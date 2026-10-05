@@ -1,170 +1,178 @@
 import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Button } from '@/components/ui/Button'
-import { Lock, Mail, ShieldCheck, CheckCircle2 } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff, AlertCircle, ArrowRight, Loader2 } from 'lucide-react'
 import { useAuth } from '@/auth/AuthContext'
-import { dashboardPathForRole } from '@/auth/permissions'
+import { getDashboardRoute, isRouteAllowedForRole } from '@/auth/permissions'
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { signIn } = useAuth()
-  const [email, setEmail] = useState('admin@waterwise.internal')
-  const [password, setPassword] = useState('password123')
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (isLoading) return
-    setError('')
-    setIsLoading(true)
 
-    const authenticated = await signIn(email, password)
-    setIsLoading(false)
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
 
-    if (!authenticated) {
-      setError('Invalid email or password. Please check your operator credentials and try again.')
+    if (!trimmedEmail || !trimmedPassword) {
+      setError('Please enter both email and password.')
       return
     }
 
+    setError('')
+    setIsLoading(true)
+
     try {
-      const savedUser = JSON.parse(localStorage.getItem('sswm.demo-auth-session') || '{}')
-      const targetDashboard = dashboardPathForRole(savedUser.role)
-      const destination = (location.state as { from?: string } | null)?.from || targetDashboard
+      const result = await signIn(trimmedEmail, trimmedPassword)
+
+      if (!result.success || !result.user) {
+        setIsLoading(false)
+        setError(result.error || 'Invalid credentials. Please verify and try again.')
+        return
+      }
+
+      // Automatic Dashboard Redirection based on authenticated user profile & role
+      const userRole = result.user.role
+      const defaultDashboard = getDashboardRoute(userRole)
+
+      const stateFrom = (location.state as { from?: string } | null)?.from
+      let destination = defaultDashboard
+
+      if (stateFrom && isRouteAllowedForRole(userRole, stateFrom)) {
+        destination = stateFrom
+      }
+
       navigate(destination, { replace: true })
     } catch (err) {
-      navigate('/dashboard', { replace: true })
+      setIsLoading(false)
+      setError('An unexpected authentication error occurred. Please try again.')
     }
   }
 
-  const quickLogin = (demoEmail: string) => {
-    setEmail(demoEmail)
-    setPassword('password123')
-  }
-
   return (
-    <div className="space-y-4">
-      <div>
-        <h2 className="text-xl font-semibold text-[#10231F]">Welcome to SSWH.</h2>
-        <p className="text-xs text-slate-500 mt-0.5">
-          Sign in to access your role-based water management environment.
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h2 className="text-xl font-bold text-white tracking-tight">
+          Welcome to SSWH
+        </h2>
+        <p className="text-xs text-slate-400 font-sans">
+          Sign in to access your intelligent water harvesting environment.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-3.5 text-left font-mono text-xs">
-        <div>
-          <label className="block font-semibold text-slate-700 mb-1">
-            Operator / User Work Email
+      <form onSubmit={handleSubmit} className="space-y-4 text-left">
+        {/* Error Alert Message */}
+        {error && (
+          <div
+            role="alert"
+            className="flex items-start gap-2.5 rounded-lg border border-rose-500/30 bg-rose-950/40 p-3 text-xs text-rose-200 animate-in fade-in duration-200"
+          >
+            <AlertCircle className="h-4 w-4 shrink-0 text-rose-400 mt-0.5" />
+            <div className="flex-1 leading-relaxed">{error}</div>
+          </div>
+        )}
+
+        {/* Email Input */}
+        <div className="space-y-1.5">
+          <label
+            htmlFor="email"
+            className="block text-xs font-medium text-slate-300"
+          >
+            Work or Residential Email
           </label>
           <div className="relative">
-            <Mail className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
             <input
+              id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded text-slate-900 focus:bg-white focus:outline-none"
-              placeholder="user@waterwise.internal"
+              autoComplete="email"
+              disabled={isLoading}
+              className="w-full pl-9 pr-3.5 py-2.5 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all duration-150 disabled:opacity-50"
+              placeholder="operator@sswh.io or resident@sswh.io"
             />
           </div>
         </div>
 
-        {error && (
-          <div role="alert" className="rounded-md border border-[#F0D3D3] bg-[#FFF8F8] p-3 font-sans text-xs text-[#C83D3D]">
-            {error}
-          </div>
-        )}
-
-        <div>
-          <div className="flex items-center justify-between mb-1">
-            <label className="font-semibold text-slate-700">
-              Security Password
+        {/* Password Input */}
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="password"
+              className="block text-xs font-medium text-slate-300"
+            >
+              Password
             </label>
             <Link
               to="/forgot-password"
-              className="text-[11px] text-slate-600 hover:text-slate-900 underline underline-offset-2"
+              className="text-xs text-emerald-400/90 hover:text-emerald-300 hover:underline transition-colors"
             >
-              Reset credential
+              Forgot Password?
             </Link>
           </div>
           <div className="relative">
-            <Lock className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
             <input
-              type="password"
+              id="password"
+              type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded text-slate-900 focus:bg-white focus:outline-none"
+              autoComplete="current-password"
+              disabled={isLoading}
+              className="w-full pl-9 pr-10 py-2.5 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all duration-150 disabled:opacity-50"
               placeholder="••••••••"
             />
-          </div>
-        </div>
-
-        {/* Quick Role Selection Cards */}
-        <div className="space-y-1.5 pt-1">
-          <p className="text-[10px] font-semibold uppercase text-slate-500 font-mono">
-            Demo Account Quick Switch:
-          </p>
-          <div className="grid grid-cols-1 gap-1.5 font-sans">
             <button
               type="button"
-              onClick={() => quickLogin('admin@waterwise.internal')}
-              className={`p-2 rounded border text-left text-xs flex items-center justify-between cursor-pointer ${
-                email === 'admin@waterwise.internal'
-                  ? 'border-[#075B48] bg-[#E8F5F0] text-[#075B48] font-semibold'
-                  : 'border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700'
-              }`}
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-200 cursor-pointer transition-colors"
             >
-              <div>
-                <span className="block font-bold">1. SCADA Operator</span>
-                <span className="text-[10px] text-slate-500 font-mono">admin@waterwise.internal (Full Controls)</span>
-              </div>
-              {email === 'admin@waterwise.internal' && <CheckCircle2 className="h-4 w-4 text-[#075B48]" />}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => quickLogin('facilities@waterwise.internal')}
-              className={`p-2 rounded border text-left text-xs flex items-center justify-between cursor-pointer ${
-                email === 'facilities@waterwise.internal'
-                  ? 'border-[#075B48] bg-[#E8F5F0] text-[#075B48] font-semibold'
-                  : 'border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700'
-              }`}
-            >
-              <div>
-                <span className="block font-bold">2. Facilities Lead</span>
-                <span className="text-[10px] text-slate-500 font-mono">facilities@waterwise.internal (Analytics & Maint)</span>
-              </div>
-              {email === 'facilities@waterwise.internal' && <CheckCircle2 className="h-4 w-4 text-[#075B48]" />}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => quickLogin('tenant@waterwise.internal')}
-              className={`p-2 rounded border text-left text-xs flex items-center justify-between cursor-pointer ${
-                email === 'tenant@waterwise.internal'
-                  ? 'border-[#075B48] bg-[#E8F5F0] text-[#075B48] font-semibold'
-                  : 'border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700'
-              }`}
-            >
-              <div>
-                <span className="block font-bold">3. Tenant Observer</span>
-                <span className="text-[10px] text-slate-500 font-mono">tenant@waterwise.internal (Read-Only Usage)</span>
-              </div>
-              {email === 'tenant@waterwise.internal' && <CheckCircle2 className="h-4 w-4 text-[#075B48]" />}
+              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             </button>
           </div>
         </div>
 
-        <Button type="submit" variant="primary" className="w-full mt-2" isLoading={isLoading}>
-          {isLoading ? 'Authenticating Session...' : 'Sign In to Dashboard'}
-        </Button>
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all duration-200 shadow-lg shadow-emerald-500/20 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              <span>Authenticating Session...</span>
+            </>
+          ) : (
+            <>
+              <span>Sign In</span>
+              <ArrowRight className="h-4 w-4" />
+            </>
+          )}
+        </button>
       </form>
 
-      <div className="text-center text-xs text-slate-500 pt-2 border-t border-slate-100 font-mono">
-        Default Password for all demo accounts:{' '}
-        <span className="font-bold text-slate-900">password123</span>
+      {/* Footer Registration Link */}
+      <div className="text-center text-xs text-slate-400 pt-3 border-t border-slate-800">
+        Don&apos;t have an account?{' '}
+        <Link
+          to="/register"
+          className="font-semibold text-emerald-400 hover:text-emerald-300 hover:underline transition-colors"
+        >
+          Sign Up
+        </Link>
       </div>
     </div>
   )

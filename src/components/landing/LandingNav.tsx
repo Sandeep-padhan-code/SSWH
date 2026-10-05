@@ -21,6 +21,7 @@ const menus: Record<string, MenuItem[]> = {
     { title: 'Subsystems Matrix', description: 'Telemetry bus & multi-chamber manifolds.', path: '/monitoring' },
   ],
   Organization: [
+    { title: 'Mentors & Leadership', description: 'Visionary guidance & advisory board.', elementId: 'mentors' },
     { title: 'Engineering Team', description: 'The team behind SSWH intelligence.', elementId: 'team' },
     { title: 'Real-World Business', description: 'Target sectors and WaaS model.', elementId: 'business' },
     { title: 'Future Roadmap', description: 'IoT hardware & AI evolution.', elementId: 'impact' },

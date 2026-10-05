@@ -115,9 +115,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentRole }
   ]
 
   const navGroups =
-    normalized === 'SCADA'
+    normalized === 'scada_operator'
       ? scadaGroups
-      : normalized === 'FACILITIES_LEAD'
+      : normalized === 'facilities_lead'
       ? facilitiesGroups
       : tenantGroups
 

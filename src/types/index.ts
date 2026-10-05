@@ -1,10 +1,17 @@
+export type CanonicalRole = 'scada_operator' | 'facilities_lead' | 'tenant_observer'
+
 export type UserRole =
+  | 'scada_operator'
+  | 'facilities_lead'
+  | 'tenant_observer'
   | 'SCADA'
   | 'FACILITIES_LEAD'
   | 'TENANT_OBSERVER'
   | 'ADMIN'
   | 'BUILDING_MANAGER'
   | 'RESIDENT'
+
+export type AccountStatus = 'ACTIVE' | 'PENDING_APPROVAL' | 'SUSPENDED'
 
 export type Permission =
   | 'VIEW_REALTIME_DATA'
@@ -31,11 +38,19 @@ export interface AuditLogEntry {
 
 export interface User {
   id: string
+  userId?: string
   name: string
+  fullName?: string
   email: string
   role: UserRole
+  status?: AccountStatus
   buildingName?: string
+  buildingId?: string
+  facilityId?: string
   apartment?: string
+  flatId?: string
+  createdAt?: string
+  lastLoginAt?: string
   balance?: number
   avatar?: string
 }

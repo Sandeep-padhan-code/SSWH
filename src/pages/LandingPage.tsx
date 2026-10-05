@@ -6,6 +6,7 @@ import { HeroSection } from '@/components/landing/HeroSection'
 import { LiveTelemetryRibbon } from '@/components/landing/LiveTelemetryRibbon'
 import { PlatformArchitecture } from '@/components/landing/PlatformArchitecture'
 import { SystemCapabilities } from '@/components/landing/SystemCapabilities'
+import { MentorsSection } from '@/components/landing/MentorsSection'
 import { TeamSection } from '@/components/landing/TeamSection'
 import { BusinessOpportunity } from '@/components/landing/BusinessOpportunity'
 import { FutureImpact } from '@/components/landing/FutureImpact'
@@ -52,16 +53,19 @@ export const LandingPage: React.FC = () => {
         {/* 04 — SYSTEM / CAPABILITY EXPLANATION: "What can the platform do?" */}
         <SystemCapabilities />
 
-        {/* 05 — TEAM: "Who is building it?" */}
+        {/* 05 — MENTORS & LEADERSHIP: "Who guides the journey?" (IMMEDIATELY ABOVE TEAM) */}
+        <MentorsSection />
+
+        {/* 06 — TEAM: "Who is building it?" */}
         <TeamSection />
 
-        {/* 06 — BUSINESS / REAL-WORLD OPPORTUNITY: "Who needs it and why?" */}
+        {/* 07 — BUSINESS / REAL-WORLD OPPORTUNITY: "Who needs it and why?" */}
         <BusinessOpportunity />
 
-        {/* 07 — FUTURE / IMPACT: "Where can this go?" */}
+        {/* 08 — FUTURE / IMPACT: "Where can this go?" */}
         <FutureImpact />
 
-        {/* 08 — FINAL CTA: "Explore / Get Started" */}
+        {/* 09 — FINAL CTA: "Explore / Get Started" */}
         <section className="relative z-10 bg-[#05090b] py-24 border-b border-white/10 overflow-hidden">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-emerald-300 text-xs font-mono uppercase tracking-[0.2em] mb-6">
