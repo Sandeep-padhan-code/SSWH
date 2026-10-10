@@ -1,6 +1,7 @@
 import React from 'react'
 import { ArrowRight, Activity, ChevronDown } from 'lucide-react'
 import heroImage from '@/assets/sswh-landscape.jpg'
+import sswhLogo from '@/Logo/SSWH-LOGO.jpg'
 
 interface HeroSectionProps {
   onGetStarted: () => void
@@ -32,17 +33,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onExplor
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 lg:py-16">
         <div className="max-w-3xl">
           {/* System Sub-heading / Category */}
-          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded bg-black/50 backdrop-blur-md border border-emerald-500/30 text-slate-300 mb-6">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="text-[11px] sm:text-xs font-mono tracking-[0.22em] uppercase text-emerald-300 font-semibold">
-              SSWH — INTELLIGENT WATER HARVESTING MONITORING SYSTEM
+          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded bg-black/50 backdrop-blur-md border border-[#5494DA]/35 text-slate-300 mb-6">
+            <img src={sswhLogo} alt="SSWH Logo" className="h-4 w-4 rounded-sm object-contain bg-white p-0.5 shrink-0" />
+            <span className="h-2 w-2 rounded-full bg-[#86CEFA] animate-pulse"></span>
+            <span className="text-[11px] sm:text-xs font-mono tracking-[0.22em] uppercase text-[#86CEFA] font-semibold">
+              SSWH-Smart Sustainable Water Harvesting
             </span>
           </div>
 
           {/* Official Tagline Headline */}
           <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-white tracking-tight leading-[1.05] drop-shadow-sm mb-6">
             Save Water Today,<br />
-            <span className="italic font-normal text-emerald-200/95">Live Life Tomorrow.</span>
+            <span className="italic font-normal text-[#86CEFA]">Live Life Tomorrow.</span>
           </h1>
 
           {/* Core Description */}
@@ -54,7 +56,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onExplor
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <button
               onClick={onGetStarted}
-              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white hover:bg-emerald-400 text-slate-950 text-xs font-bold tracking-[0.2em] uppercase rounded-sm transition-all duration-300 shadow-xl shadow-black/30 hover:shadow-emerald-500/30 cursor-pointer active:scale-[0.98]"
+              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#5494DA] hover:bg-[#73B9EE] text-white text-xs font-bold tracking-[0.2em] uppercase rounded-sm transition-all duration-300 shadow-xl shadow-[#5494DA]/25 hover:shadow-[#5494DA]/40 cursor-pointer active:scale-[0.98]"
               id="hero-get-started-btn"
             >
               <span>GET STARTED</span>
@@ -63,9 +65,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onExplor
 
             <button
               onClick={onExploreClick}
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 bg-slate-950/60 hover:bg-slate-900/80 text-white hover:text-emerald-300 border border-white/20 hover:border-emerald-400/50 backdrop-blur-md text-xs font-mono tracking-[0.16em] uppercase rounded-sm transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 bg-slate-950/60 hover:bg-slate-900/80 text-white hover:text-[#73B9EE] border border-white/20 hover:border-[#5494DA]/50 backdrop-blur-md text-xs font-mono tracking-[0.16em] uppercase rounded-sm transition-all duration-300"
             >
-              <Activity className="w-3.5 h-3.5 text-emerald-400" />
+              <Activity className="w-3.5 h-3.5 text-[#5494DA]" />
               <span>EXPLORE PLATFORM</span>
             </button>
           </div>
@@ -83,7 +85,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onExplor
             </div>
             <div className="flex items-center gap-2">
               <span className="text-slate-400">MODE:</span>
-              <span className="text-emerald-300 font-medium">SYSTEM SIMULATION</span>
+              <span className="text-[#73B9EE] font-medium">SYSTEM SIMULATION</span>
             </div>
             <div className="hidden sm:flex items-center gap-2">
               <span className="text-slate-400">TELEMETRY BUS:</span>
@@ -98,7 +100,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onExplor
             aria-label="Scroll to discover architecture"
           >
             <span className="tracking-[0.18em] text-[11px] uppercase">DISCOVER ARCHITECTURE</span>
-            <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5 text-emerald-400" />
+            <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5 text-[#5494DA]" />
           </button>
         </div>
       </div>

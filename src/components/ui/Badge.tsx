@@ -14,12 +14,12 @@ export const Badge: React.FC<BadgeProps> = ({
   ...props
 }) => {
   const variantStyles = {
-    primary: 'bg-[#E4F5EE] text-[#0F4D3A] border-[#BFE7D5]',
+    primary: 'bg-[#EAF3FD] text-[#5494DA] border-[#D1E2F5]',
     success: 'bg-[#E4F5EE] text-[#18A878] border-[#BFE7D5]',
     warning: 'bg-[#FFF3D8] text-[#D99024] border-[#F3D299]',
     critical: 'bg-[#FBE8EB] text-[#C94B5B] border-[#F6B6C1]',
-    neutral: 'bg-[#F4F8F5] text-[#587068] border-[#D6E3DD]',
-    demo: 'bg-[#F4F8F5] text-[#0F4D3A] border-[#D6E3DD] font-mono tracking-wider',
+    neutral: 'bg-[#F4F8FB] text-[#4A637D] border-[#D1E2F5]',
+    demo: 'bg-[#F0F6FD] text-[#5494DA] border-[#D1E2F5] font-mono tracking-wider',
   }
 
   const sizeStyles = {

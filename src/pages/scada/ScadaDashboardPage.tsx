@@ -120,7 +120,7 @@ export const ScadaDashboardPage: React.FC = () => {
       <section className="flex flex-col gap-3 border-b border-[#DDE6E2] pb-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <span className="rounded bg-[#E8F5F0] px-2 py-0.5 text-[10px] font-mono font-bold uppercase text-[#075B48] border border-[#D6E3DD]">
+            <span className="rounded bg-[#5494DA]/10 px-2 py-0.5 text-[10px] font-mono font-bold uppercase text-[#5494DA] border border-[#5494DA]/20">
               SCADA Operator Control
             </span>
             <span className="text-xs text-[#587068]">Real-Time Telemetry Command</span>
@@ -141,7 +141,7 @@ export const ScadaDashboardPage: React.FC = () => {
         <div
           className={`p-4 rounded-xl border text-xs font-mono flex items-center justify-between ${
             feedbackMsg.type === 'success'
-              ? 'bg-[#E8F5F0] border-[#D6E3DD] text-[#075B48]'
+              ? 'bg-[#5494DA]/10 border-[#5494DA]/20 text-[#5494DA]'
               : 'bg-[#FFF8F8] border-[#F0D3D3] text-[#C83D3D]'
           }`}
         >
@@ -156,7 +156,7 @@ export const ScadaDashboardPage: React.FC = () => {
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between">
-            <div className="rounded-lg bg-[#E8F5F0] p-2 text-[#075B48]">
+            <div className="rounded-lg bg-[#5494DA]/10 p-2 text-[#5494DA]">
               <Droplets className="h-5 w-5" />
             </div>
             <DataFreshnessTag lastUpdated={telemetry.lastUpdated} showStatusDot={false} />
@@ -167,12 +167,12 @@ export const ScadaDashboardPage: React.FC = () => {
           <p className="mt-1 text-2xl font-bold font-mono text-[#10231F]">
             {telemetry.flowRate} <span className="text-xs font-sans text-[#63736E]">L/min</span>
           </p>
-          <p className="mt-2 text-xs text-[#075B48]">● Main Inflow Line Active</p>
+          <p className="mt-2 text-xs text-[#18A878]">● Main Inflow Line Active</p>
         </div>
 
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between">
-            <div className="rounded-lg bg-[#E9F5F8] p-2 text-[#2386A8]">
+            <div className="rounded-lg bg-[#73B9EE]/10 p-2 text-[#5494DA]">
               <Gauge className="h-5 w-5" />
             </div>
             <DataFreshnessTag lastUpdated={telemetry.lastUpdated} showStatusDot={false} />
@@ -183,15 +183,15 @@ export const ScadaDashboardPage: React.FC = () => {
           <p className="mt-1 text-2xl font-bold font-mono text-[#10231F]">
             {telemetry.pressure} <span className="text-xs font-sans text-[#63736E]">Bar</span>
           </p>
-          <p className="mt-2 text-xs text-[#2386A8]">Nominal range: 3.5 - 4.8 Bar</p>
+          <p className="mt-2 text-xs text-[#5494DA]">Nominal range: 3.5 - 4.8 Bar</p>
         </div>
 
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between">
-            <div className="rounded-lg bg-[#E8F5F0] p-2 text-[#075B48]">
+            <div className="rounded-lg bg-[#18A878]/10 p-2 text-[#18A878]">
               <CheckCircle2 className="h-5 w-5" />
             </div>
-            <span className="text-[10px] font-mono text-[#075B48] font-bold">100% HEALTH</span>
+            <span className="text-[10px] font-mono text-[#18A878] font-bold">100% HEALTH</span>
           </div>
           <p className="mt-4 text-xs font-mono font-bold uppercase tracking-wider text-[#63736E]">
             SCADA Gateway
@@ -224,7 +224,7 @@ export const ScadaDashboardPage: React.FC = () => {
       <section className="rounded-xl border border-[#DDE6E2] bg-white p-6 shadow-xs">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#075B48]">
+            <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5494DA]">
               Live Process Mimic
             </p>
             <h3 className="text-lg font-semibold text-[#10231F]">Water Treatment & Distribution Diagram</h3>
@@ -238,12 +238,12 @@ export const ScadaDashboardPage: React.FC = () => {
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#075B48]">
+            <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5494DA]">
               Operational Remote Actions
             </p>
             <h2 className="text-xl font-semibold text-[#10231F]">Pumps & Valves SCADA Control</h2>
           </div>
-          <span className="text-xs font-mono text-[#587068] bg-[#E8F5F0] px-2.5 py-1 rounded border border-[#D6E3DD]">
+          <span className="text-xs font-mono text-[#587068] bg-[#5494DA]/10 px-2.5 py-1 rounded border border-[#5494DA]/20">
             Permission: CONTROL_PUMP & CONTROL_VALVE
           </span>
         </div>

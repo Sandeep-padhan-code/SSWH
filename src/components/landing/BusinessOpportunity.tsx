@@ -46,7 +46,7 @@ export const BusinessOpportunity: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 text-emerald-400 font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
+          <div className="inline-flex items-center gap-2 text-[#73B9EE] font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
             <span>// BUILT FOR REAL-WORLD WATER MANAGEMENT</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-light tracking-tight mb-5">
@@ -59,7 +59,7 @@ export const BusinessOpportunity: React.FC = () => {
 
         {/* Target User Groups */}
         <div className="mb-20">
-          <div className="text-xs font-mono uppercase tracking-[0.2em] text-emerald-400 mb-6">
+          <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#73B9EE] mb-6">
             PRIMARY TARGET SECTORS
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 max-w-5xl mx-auto">
@@ -68,15 +68,15 @@ export const BusinessOpportunity: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="p-6 bg-slate-950/70 border border-white/10 rounded-sm hover:border-emerald-500/40 transition-all flex flex-col justify-between"
+                  className="p-6 bg-slate-950/70 border border-white/10 rounded-sm hover:border-[#5494DA]/50 transition-all flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-[10px] font-mono tracking-[0.2em] text-emerald-400 uppercase">
+                      <span className="text-[10px] font-mono tracking-[0.2em] text-[#73B9EE] uppercase">
                         {group.category}
                       </span>
                       <div className="p-2 rounded bg-white/5 text-slate-300">
-                        <Icon className="w-4 h-4 text-emerald-300" />
+                        <Icon className="w-4 h-4 text-[#5494DA]" />
                       </div>
                     </div>
                     <p className="font-sans text-xs text-slate-400 leading-relaxed font-light mb-4">
@@ -85,7 +85,7 @@ export const BusinessOpportunity: React.FC = () => {
                     <ul className="space-y-2">
                       {group.items.map((item, i) => (
                         <li key={i} className="flex items-center gap-2 text-xs font-sans text-slate-200">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#5494DA] shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -101,8 +101,8 @@ export const BusinessOpportunity: React.FC = () => {
         <div className="p-8 sm:p-10 bg-slate-950/90 border border-white/10 rounded-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-emerald-300 text-xs font-mono uppercase tracking-[0.16em] mb-4">
-                <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-[#73B9EE] text-xs font-mono uppercase tracking-[0.16em] mb-4">
+                <Briefcase className="w-3.5 h-3.5 text-[#5494DA]" />
                 <span>COMMERCIAL DIRECTION</span>
               </div>
               <h3 className="font-serif text-2xl sm:text-3xl text-white font-normal mb-4">
@@ -112,9 +112,9 @@ export const BusinessOpportunity: React.FC = () => {
                 SSWH is designed around a modular model adaptable for varying scales of water infrastructure—from single buildings to district-wide networks.
               </p>
               <div className="p-4 rounded bg-white/5 border border-white/10 flex items-start gap-3 text-xs font-mono text-slate-300">
-                <HelpCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <HelpCircle className="w-4 h-4 text-[#5494DA] shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-emerald-300 uppercase font-semibold block mb-1">
+                  <span className="text-[#73B9EE] uppercase font-semibold block mb-1">
                     STATUS: UNDER DEVELOPMENT
                   </span>
                   <span>
@@ -125,7 +125,7 @@ export const BusinessOpportunity: React.FC = () => {
             </div>
 
             <div className="lg:col-span-7 border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-8">
-              <div className="text-xs font-mono uppercase tracking-[0.18em] text-emerald-400 mb-4">
+              <div className="text-xs font-mono uppercase tracking-[0.18em] text-[#73B9EE] mb-4">
                 POTENTIAL SERVICE & PLATFORM REVENUE MODULES
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -134,7 +134,7 @@ export const BusinessOpportunity: React.FC = () => {
                     key={i}
                     className="p-3.5 rounded bg-white/5 border border-white/5 text-xs font-sans text-slate-200 flex items-center gap-2.5"
                   >
-                    <Layers className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <Layers className="w-3.5 h-3.5 text-[#5494DA] shrink-0" />
                     <span>{area}</span>
                   </div>
                 ))}

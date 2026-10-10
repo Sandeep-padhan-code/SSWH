@@ -15,7 +15,7 @@ export const AlertCard: React.FC<AlertCardProps> = ({ alert, onResolve, classNam
   const severityBorders = {
     CRITICAL: 'border-l-4 border-l-[#C94B5B]',
     WARNING: 'border-l-4 border-l-[#D99024]',
-    INFO: 'border-l-4 border-l-[#4FA3A5]',
+    INFO: 'border-l-4 border-l-[#73B9EE]',
   }
 
   const borderClass = severityBorders[alert.severity] || severityBorders.INFO
@@ -34,7 +34,7 @@ export const AlertCard: React.FC<AlertCardProps> = ({ alert, onResolve, classNam
                     ? 'bg-[#FEF0F2] text-[#C94B5B] border border-[#F5C6CC]'
                     : alert.severity === 'WARNING'
                     ? 'bg-[#FEF4E0] text-[#D99024] border border-[#F9DFA5]'
-                    : 'bg-[#EAF4F4] text-[#0B6B73] border border-[#B2D8DB]'
+                    : 'bg-[#EAF3FD] text-[#5494DA] border border-[#D1E2F5]'
                 )}
               >
                 {alert.severity}
@@ -59,7 +59,7 @@ export const AlertCard: React.FC<AlertCardProps> = ({ alert, onResolve, classNam
 
           <div className="flex items-center sm:self-center shrink-0">
             {alert.isResolved ? (
-              <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-[#0F4D3A] bg-[#DCEAE4] px-2 py-0.5 rounded border border-[#B8D4C8]">
+              <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-[#5494DA] bg-[#EAF3FD] px-2 py-0.5 rounded border border-[#D1E2F5]">
                 <CheckCircle2 className="h-3.5 w-3.5 text-[#18A878]" /> Resolved
               </span>
             ) : onResolve ? (

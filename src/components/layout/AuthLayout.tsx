@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Outlet, Link } from 'react-router-dom'
-import { Droplets, ShieldCheck } from 'lucide-react'
+import { ShieldCheck } from 'lucide-react'
 import { LegalModal } from '@/components/common/LegalModal'
+import sswhLogo from '@/Logo/SSWH-LOGO.jpg'
 
 export const AuthLayout: React.FC = () => {
   const [legalType, setLegalType] = useState<
@@ -9,15 +10,15 @@ export const AuthLayout: React.FC = () => {
   >(null)
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#050b09] text-slate-100 selection:bg-emerald-400 selection:text-slate-950 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-[#04080e] text-slate-100 selection:bg-[#5494DA] selection:text-white relative overflow-hidden">
       {/* Subtle Background Glows & Telemetry Grid */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-teal-500/5 rounded-full blur-3xl" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#5494DA]/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-[#73B9EE]/10 rounded-full blur-3xl" />
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: `radial-gradient(#10b981 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(#5494DA 1px, transparent 1px)`,
             backgroundSize: '24px 24px',
           }}
         />
@@ -28,16 +29,18 @@ export const AuthLayout: React.FC = () => {
           {/* SSWH Top Brand Header */}
           <div className="text-center space-y-2">
             <Link to="/" className="inline-flex items-center gap-3 group">
-              <div className="h-10 w-10 rounded-lg bg-emerald-400 text-slate-950 flex items-center justify-center shadow-lg shadow-emerald-400/20 group-hover:scale-105 transition-transform duration-200">
-                <Droplets className="h-5 w-5" />
-              </div>
+              <img
+                src={sswhLogo}
+                alt="SSWH Logo"
+                className="h-11 w-11 rounded-lg object-contain bg-white p-1 shadow-lg shadow-[#5494DA]/25 group-hover:scale-105 transition-transform duration-200"
+              />
 
               <div className="text-left">
                 <span className="font-serif text-2xl font-bold tracking-tight text-white block leading-none">
                   SSWH
                 </span>
-                <span className="text-[10px] uppercase font-mono tracking-wider text-emerald-400 font-semibold">
-                  Intelligent Water Harvesting
+                <span className="text-[10px] uppercase font-mono tracking-wider text-[#73B9EE] font-semibold">
+                  SSWH-Smart Sustainable Water Harvesting
                 </span>
               </div>
             </Link>
@@ -48,13 +51,13 @@ export const AuthLayout: React.FC = () => {
           </div>
 
           {/* Auth Card Container */}
-          <div className="bg-[#091512]/90 backdrop-blur-xl border border-emerald-500/20 rounded-xl p-6 sm:p-7 shadow-2xl shadow-black/60">
+          <div className="bg-[#07101a]/90 backdrop-blur-xl border border-[#5494DA]/30 rounded-xl p-6 sm:p-7 shadow-2xl shadow-black/60">
             <Outlet />
           </div>
 
           {/* Compliance & Security Footer */}
           <div className="text-center text-xs text-slate-400 space-y-2 font-mono">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/20 text-[11px] text-emerald-400/90">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#5494DA]/10 border border-[#5494DA]/30 text-[11px] text-[#86CEFA]">
               <ShieldCheck className="h-3.5 w-3.5" />
               <span>RBAC Enforced • End-to-End Telemetry Security</span>
             </div>
@@ -62,7 +65,7 @@ export const AuthLayout: React.FC = () => {
             <div className="flex items-center justify-center gap-3 text-[11px] text-slate-400 pt-1">
               <button
                 onClick={() => setLegalType('terms')}
-                className="hover:text-emerald-300 transition-colors cursor-pointer"
+                className="hover:text-[#73B9EE] transition-colors cursor-pointer"
               >
                 Terms of Service
               </button>
@@ -71,7 +74,7 @@ export const AuthLayout: React.FC = () => {
 
               <button
                 onClick={() => setLegalType('privacy')}
-                className="hover:text-emerald-300 transition-colors cursor-pointer"
+                className="hover:text-[#73B9EE] transition-colors cursor-pointer"
               >
                 Privacy Policy
               </button>
@@ -80,7 +83,7 @@ export const AuthLayout: React.FC = () => {
 
               <button
                 onClick={() => setLegalType('compliance')}
-                className="hover:text-emerald-300 transition-colors cursor-pointer"
+                className="hover:text-[#73B9EE] transition-colors cursor-pointer"
               >
                 Audit Standards
               </button>

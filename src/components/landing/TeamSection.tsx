@@ -10,7 +10,7 @@ export const TeamSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14">
         {/* Section Header */}
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 text-emerald-400 font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
+          <div className="inline-flex items-center gap-2 text-[#73B9EE] font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
             <span>// THE TEAM BEHIND THE SYSTEM</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-light tracking-tight mb-5">
@@ -33,12 +33,12 @@ export const TeamSection: React.FC = () => {
           {extendedTeam.map((member, index) => (
             <div
               key={`${member.id}-${index}`}
-              className="w-[290px] sm:w-[340px] md:w-[380px] lg:w-[410px] shrink-0 flex flex-col justify-between bg-slate-950/80 border border-white/10 hover:border-emerald-500/40 rounded-sm p-6 transition-all duration-300 backdrop-blur-sm group"
+              className="w-[290px] sm:w-[340px] md:w-[380px] lg:w-[410px] shrink-0 flex flex-col justify-between bg-slate-950/80 border border-white/10 hover:border-[#5494DA]/50 rounded-sm p-6 transition-all duration-300 backdrop-blur-sm group"
             >
               <div>
                 {/* Card Header Tag */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald-400 font-medium bg-emerald-950/50 px-2.5 py-1 rounded border border-emerald-500/30">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#86CEFA] font-medium bg-[#5494DA]/15 px-2.5 py-1 rounded border border-[#5494DA]/30">
                     {member.badge || `MEMBER ${member.id}`}
                   </span>
                   <span className="font-mono text-[10px] text-slate-500 tracking-widest uppercase">
@@ -47,7 +47,7 @@ export const TeamSection: React.FC = () => {
                 </div>
 
                 {/* Member Photo Frame */}
-                <div className="relative w-full aspect-[4/4.8] rounded-sm overflow-hidden mb-5 bg-slate-900 border border-white/10 group-hover:border-emerald-500/30 transition-colors">
+                <div className="relative w-full aspect-[4/4.8] rounded-sm overflow-hidden mb-5 bg-slate-900 border border-white/10 group-hover:border-[#5494DA]/30 transition-colors">
                   <img
                     src={member.image}
                     alt={`${member.name} - ${member.role}`}
@@ -63,7 +63,7 @@ export const TeamSection: React.FC = () => {
                 </h3>
 
                 {/* Role Display */}
-                <div className="text-xs font-mono uppercase tracking-[0.16em] text-emerald-300 font-semibold mb-3">
+                <div className="text-xs font-mono uppercase tracking-[0.16em] text-[#73B9EE] font-semibold mb-3">
                   {member.role}
                 </div>
 
@@ -90,7 +90,7 @@ export const TeamSection: React.FC = () => {
               {/* Footer Bar */}
               <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-500">
                 <span>SSWH CORE ENGINEERING</span>
-                <span className="text-emerald-400/90 font-medium">VERIFIED CONTRIBUTOR</span>
+                <span className="text-[#73B9EE] font-medium">VERIFIED CONTRIBUTOR</span>
               </div>
             </div>
           ))}

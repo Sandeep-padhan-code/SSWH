@@ -23,7 +23,7 @@ export const StatCard: React.FC<StatCardProps> = ({ metric, className }) => {
         </div>
 
         <div className="flex items-baseline gap-1.5">
-          <span className="text-2xl font-bold font-mono tabular-nums text-[#0F4D3A] tracking-tight">
+          <span className="text-2xl font-bold font-mono tabular-nums text-[#5494DA] tracking-tight">
             {metric.value}
           </span>
           {metric.unit && (

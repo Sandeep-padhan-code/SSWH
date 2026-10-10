@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import sswhLogo from '@/Logo/SSWH-LOGO.jpg'
 import {
   Droplets,
   Search,
@@ -111,13 +112,13 @@ export const Header: React.FC<HeaderProps> = ({
       label: 'SCADA Operator',
       icon: Shield,
       badge: 'Full Operational Control',
-      badgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+      badgeClass: 'bg-[#5494DA]/10 text-[#5494DA] border-[#5494DA]/20',
     },
     facilities_lead: {
       label: 'Facilities Lead',
       icon: Building,
       badge: 'Analytics & Maintenance',
-      badgeClass: 'bg-cyan-50 text-cyan-800 border-cyan-200',
+      badgeClass: 'bg-[#73B9EE]/10 text-[#5494DA] border-[#73B9EE]/20',
     },
     tenant_observer: {
       label: 'Tenant Observer',
@@ -129,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
       label: 'SCADA Operator',
       icon: Shield,
       badge: 'Full Operational Control',
-      badgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+      badgeClass: 'bg-[#EAF3FD] text-[#5494DA] border-[#D1E2F5]',
     },
     FACILITIES_LEAD: {
       label: 'Facilities Lead',
@@ -161,31 +162,33 @@ export const Header: React.FC<HeaderProps> = ({
   const userEmail = user?.email || 'user@sswh.io'
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur border-b border-[#DDE6E2] px-4 lg:px-6">
+    <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur border-b border-[#D1E2F5] px-4 lg:px-6">
       <div className="flex items-center justify-between gap-4">
         {/* Left: Mobile Menu & Brand */}
         <div className="flex items-center gap-3">
           <button
             onClick={onMenuToggle}
-            className="p-2 rounded-md text-[#63736E] hover:bg-[#E8F5F0] hover:text-[#075B48] cursor-pointer transition-colors"
+            className="p-2 rounded-md text-[#4A637D] hover:bg-[#EAF3FD] hover:text-[#5494DA] cursor-pointer transition-colors"
             aria-label="Toggle navigation menu"
           >
             <Menu className="h-5 w-5" />
           </button>
 
           <Link to={dashboardPathForRole(normalizedRole)} className="flex items-center gap-2.5 text-decoration-none">
-            <div className="h-8 w-8 rounded bg-[#0F4D3A] flex items-center justify-center text-white shadow-sm">
-              <Droplets className="h-4.5 w-4.5 text-[#B9DDDD]" />
-            </div>
+            <img
+              src={sswhLogo}
+              alt="SSWH Logo"
+              className="h-8 w-8 rounded object-contain bg-white p-0.5 border border-[#D1E2F5] shadow-sm"
+            />
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-base text-[#10251F] tracking-tight">SSWH</span>
-                <span className="text-[10px] uppercase font-mono font-bold tracking-wider px-1.5 py-0.5 bg-[#E4F5EE] text-[#0F4D3A] rounded border border-[#D6E3DD]">
+                <span className="font-bold text-base text-[#0E1B2A] tracking-tight">SSWH</span>
+                <span className="text-[10px] uppercase font-mono font-bold tracking-wider px-1.5 py-0.5 bg-[#EAF3FD] text-[#5494DA] rounded border border-[#D1E2F5]">
                   {roleDisplayNames[normalizedRole]}
                 </span>
               </div>
-              <p className="text-[11px] text-[#587068] hidden sm:block">
-                Smart Water Usage Management Platform
+              <p className="text-[11px] text-[#4A637D] hidden sm:block">
+                SSWH-Smart Sustainable Water Harvesting
               </p>
             </div>
           </Link>
@@ -194,7 +197,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Center: Global Search Bar */}
         <div ref={searchRef} className="relative hidden md:block w-72 lg:w-[28rem]">
           <div className="relative flex items-center">
-            <Search className="absolute left-3 h-3.5 w-3.5 text-[#587068] pointer-events-none" />
+            <Search className="absolute left-3 h-3.5 w-3.5 text-[#4A637D] pointer-events-none" />
             <input
               type="text"
               value={searchTerm}
@@ -202,9 +205,9 @@ export const Header: React.FC<HeaderProps> = ({
               onFocus={() => setIsSearchFocused(true)}
               placeholder="Search equipment, tanks, sensors, alarms..."
               aria-label="Search telemetry entities"
-              className="w-full pl-8 pr-12 py-1.5 text-xs bg-[#F4F8F5] border border-[#D6E3DD] rounded text-[#10251F] placeholder-[#8AA097] focus:bg-white focus:border-[#0F4D3A] focus:outline-none focus:ring-1 focus:ring-[#0F4D3A] transition-colors"
+              className="w-full pl-8 pr-12 py-1.5 text-xs bg-[#F4F8FB] border border-[#D1E2F5] rounded text-[#0E1B2A] placeholder-[#8AA097] focus:bg-white focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-colors"
             />
-            <kbd className="absolute right-2 text-[10px] font-mono text-[#587068] bg-[#F4F8F5] px-1.5 py-0.5 rounded border border-[#D6E3DD]">
+            <kbd className="absolute right-2 text-[10px] font-mono text-[#4A637D] bg-[#F4F8FB] px-1.5 py-0.5 rounded border border-[#D1E2F5]">
               /
             </kbd>
           </div>
@@ -270,31 +273,31 @@ export const Header: React.FC<HeaderProps> = ({
           <div ref={profileDropdownRef} className="relative">
             <button
               onClick={() => setIsProfileOpen(!isProfileOpen)}
-              className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-[#D6E3DD] bg-white hover:bg-[#F4F8F5] text-xs font-medium text-[#10251F] cursor-pointer transition-colors"
+              className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-[#D1E2F5] bg-white hover:bg-[#F4F8FB] text-xs font-medium text-[#0E1B2A] cursor-pointer transition-colors"
               aria-expanded={isProfileOpen}
               aria-label="User account identity"
             >
-              <div className="h-5 w-5 rounded-full bg-[#E4F5EE] border border-[#D6E3DD] flex items-center justify-center text-[#0F4D3A]">
+              <div className="h-5 w-5 rounded-full bg-[#EAF3FD] border border-[#D1E2F5] flex items-center justify-center text-[#5494DA]">
                 <CurrentRoleIcon className="h-3 w-3" />
               </div>
               <div className="text-left hidden sm:block">
-                <span className="font-semibold block text-[11px] leading-tight text-[#10251F]">
+                <span className="font-semibold block text-[11px] leading-tight text-[#0E1B2A]">
                   {displayName}
                 </span>
-                <span className="text-[10px] text-[#587068] font-mono leading-none">
+                <span className="text-[10px] text-[#4A637D] font-mono leading-none">
                   {currentConfig.label}
                 </span>
               </div>
-              <ChevronDown className="h-3.5 w-3.5 text-[#587068]" />
+              <ChevronDown className="h-3.5 w-3.5 text-[#4A637D]" />
             </button>
 
             {/* Account Details & Session Menu */}
             {isProfileOpen && (
-              <div className="absolute right-0 mt-1.5 w-72 bg-white border border-[#D6E3DD] rounded-xl shadow-xl z-50 p-2 text-xs divide-y divide-[#E5EEE9]">
+              <div className="absolute right-0 mt-1.5 w-72 bg-white border border-[#D1E2F5] rounded-xl shadow-xl z-50 p-2 text-xs divide-y divide-[#E4EFFB]">
                 {/* Account Profile Summary */}
                 <div className="p-2 space-y-1">
                   <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-full bg-[#0F4D3A] text-white flex items-center justify-center font-bold text-xs">
+                    <div className="h-8 w-8 rounded-full bg-[#5494DA] text-white flex items-center justify-center font-bold text-xs">
                       {displayName.charAt(0).toUpperCase()}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -312,7 +315,7 @@ export const Header: React.FC<HeaderProps> = ({
                     </span>
                     <div className="mt-1 flex items-center justify-between">
                       <div className="flex items-center gap-1.5">
-                        <CurrentRoleIcon className="h-3.5 w-3.5 text-[#0F4D3A]" />
+                        <CurrentRoleIcon className="h-3.5 w-3.5 text-[#5494DA]" />
                         <span className="font-semibold text-slate-900 text-xs">{currentConfig.label}</span>
                       </div>
                       <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono font-medium border ${currentConfig.badgeClass}`}>
@@ -336,8 +339,8 @@ export const Header: React.FC<HeaderProps> = ({
                     </div>
                   )}
 
-                  <div className="flex items-center gap-1.5 text-[10px] text-emerald-700 font-medium">
-                    <UserCheck className="h-3 w-3 text-emerald-600" />
+                  <div className="flex items-center gap-1.5 text-[10px] text-[#5494DA] font-medium">
+                    <UserCheck className="h-3 w-3 text-[#5494DA]" />
                     <span>Authoritative Session Active</span>
                   </div>
                 </div>

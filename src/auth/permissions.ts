@@ -90,12 +90,7 @@ export const hasPermission = (role: UserRole, permission: Permission): boolean =
   return permissionsByRole[normalized].includes(permission)
 }
 
-/**
- * Single authoritative role-to-dashboard route resolution.
- * - scada_operator -> /scada/dashboard
- * - facilities_lead -> /facilities/dashboard
- * - tenant_observer -> /tenant/dashboard
- */
+
 export const getDashboardRoute = (role: UserRole): string => {
   const normalized = normalizeRole(role)
   switch (normalized) {

@@ -19,12 +19,12 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({
     <div className="rounded-xl border border-[#DDE6E2] bg-white p-5 shadow-xs">
       <div className="flex items-center justify-between border-b border-[#E5EEE9] pb-3 mb-4">
         <div>
-          <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#075B48]">
+          <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5494DA]">
             Security & Accountability
           </p>
           <h3 className="text-base font-semibold text-[#10231F]">{title}</h3>
         </div>
-        <span className="rounded bg-[#E8F5F0] px-2 py-1 text-[10px] font-mono font-semibold text-[#075B48] border border-[#D6E3DD]">
+        <span className="rounded bg-[#5494DA]/10 px-2 py-1 text-[10px] font-mono font-semibold text-[#5494DA] border border-[#5494DA]/20">
           Backend Verified
         </span>
       </div>
@@ -53,7 +53,7 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({
                     {isDenied ? (
                       <ShieldAlert className="h-4 w-4 text-[#C83D3D]" />
                     ) : (
-                      <ShieldCheck className="h-4 w-4 text-[#075B48]" />
+                      <ShieldCheck className="h-4 w-4 text-[#18A878]" />
                     )}
                   </div>
                   <div>
@@ -63,7 +63,7 @@ export const AuditLogViewer: React.FC<AuditLogViewerProps> = ({
                         className={`text-[10px] px-1.5 py-0.2 rounded font-mono font-bold ${
                           isDenied
                             ? 'bg-[#C83D3D] text-white'
-                            : 'bg-[#E8F5F0] text-[#075B48] border border-[#D6E3DD]'
+                            : 'bg-[#18A878]/10 text-[#18A878] border border-[#18A878]/20'
                         }`}
                       >
                         {log.result}

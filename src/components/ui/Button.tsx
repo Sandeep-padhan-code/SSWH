@@ -22,13 +22,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const variantStyles = {
       primary:
-        'bg-[#0F4D3A] hover:bg-[#0B6B73] active:bg-[#083C30] text-white border border-[#0F4D3A] shadow-xs',
+        'bg-[#5494DA] hover:bg-[#73B9EE] active:bg-[#437ec0] text-white border border-[#5494DA] shadow-xs',
       secondary:
-        'bg-white hover:bg-[#F4F8F5] text-[#0F4D3A] border border-[#0F4D3A]',
+        'bg-white hover:bg-[#F0F6FD] text-[#5494DA] border border-[#5494DA]',
       outline:
-        'border border-[#D6E3DD] bg-white hover:bg-[#F4F8F5] text-[#10251F]',
+        'border border-[#D1E2F5] bg-white hover:bg-[#F0F6FD] text-[#0E1B2A]',
       ghost:
-        'hover:bg-[#F4F8F5] text-[#3F514B]',
+        'hover:bg-[#F0F6FD] text-[#4A637D]',
       danger:
         'bg-[#C94B5B] hover:bg-[#B33B4B] text-white border border-[#C94B5B]',
     }
@@ -45,7 +45,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || isLoading}
         className={cn(
-          'inline-flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F4D3A] focus-visible:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none cursor-pointer select-none',
+          'inline-flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5494DA] focus-visible:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none cursor-pointer select-none',
           variantStyles[variant],
           sizeStyles[size],
           className

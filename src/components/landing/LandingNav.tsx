@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ChevronDown, Menu, X, ArrowUpRight, Droplets } from 'lucide-react'
+import { ChevronDown, Menu, X, ArrowUpRight } from 'lucide-react'
+import sswhLogo from '@/Logo/SSWH-LOGO.jpg'
 
 interface LandingNavProps {
   onGetStarted: () => void
@@ -56,16 +57,18 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
   }
 
   return (
-    <header ref={ref} className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#061410]/85 backdrop-blur-md">
+    <header ref={ref} className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050b14]/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5 text-white group">
-          <span className="grid h-8 w-8 place-items-center rounded bg-emerald-400 text-[#062018] group-hover:bg-emerald-300 transition-colors">
-            <Droplets className="h-4 w-4" />
-          </span>
+          <img
+            src={sswhLogo}
+            alt="SSWH Logo"
+            className="h-8 w-8 rounded object-contain bg-white p-0.5 shadow-sm group-hover:opacity-90 transition-opacity shrink-0"
+          />
           <div className="flex flex-col">
             <span className="font-serif text-lg font-medium tracking-wide leading-none">SSWH</span>
-            <span className="text-[9px] uppercase tracking-wider text-emerald-300 font-mono mt-0.5">
-              Intelligent Water Harvesting
+            <span className="text-[9px] uppercase tracking-wider text-[#73B9EE] font-mono mt-0.5">
+              SSWH-Smart Sustainable Water Harvesting
             </span>
           </div>
         </Link>
@@ -78,18 +81,18 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
                 onClick={() => setOpen(open === label ? null : label)}
                 onMouseEnter={() => setOpen(label)}
                 aria-expanded={open === label}
-                className="flex items-center gap-1.5 rounded-md px-3.5 py-2 text-xs font-mono tracking-wider uppercase text-slate-200 hover:bg-white/10 hover:text-emerald-300 transition-colors"
+                className="flex items-center gap-1.5 rounded-md px-3.5 py-2 text-xs font-mono tracking-wider uppercase text-slate-200 hover:bg-white/10 hover:text-[#73B9EE] transition-colors"
               >
                 <span>{label}</span>
-                <ChevronDown className="h-3.5 w-3.5 text-emerald-400" />
+                <ChevronDown className="h-3.5 w-3.5 text-[#5494DA]" />
               </button>
 
               {open === label && (
                 <div
                   onMouseLeave={() => setOpen(null)}
-                  className="absolute left-0 top-full mt-1 w-80 rounded-sm border border-white/10 bg-[#060e0c] p-2 shadow-2xl backdrop-blur-xl"
+                  className="absolute left-0 top-full mt-1 w-80 rounded-sm border border-white/10 bg-[#060e14] p-2 shadow-2xl backdrop-blur-xl"
                 >
-                  <p className="px-3 pb-2 pt-1 text-[10px] font-mono font-semibold uppercase tracking-[.18em] text-emerald-400">
+                  <p className="px-3 pb-2 pt-1 text-[10px] font-mono font-semibold uppercase tracking-[.18em] text-[#5494DA]">
                     {label}
                   </p>
                   {menus[label].map((item) =>
@@ -124,7 +127,7 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
         <div className="hidden items-center gap-2 sm:flex">
           <button
             onClick={onGetStarted}
-            className="inline-flex items-center gap-2 rounded-sm bg-emerald-400 px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-950 hover:bg-emerald-300 transition-all cursor-pointer shadow-md shadow-emerald-500/10"
+            className="inline-flex items-center gap-2 rounded-sm bg-[#5494DA] hover:bg-[#73B9EE] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white transition-all cursor-pointer shadow-md shadow-[#5494DA]/25"
           >
             <span>GET STARTED</span>
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -143,10 +146,10 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
 
       {/* Mobile Drawer */}
       {mobile && (
-        <div className="border-t border-white/10 bg-[#060e0c] px-5 py-4 sm:hidden">
+        <div className="border-t border-white/10 bg-[#060e14] px-5 py-4 sm:hidden">
           {Object.entries(menus).map(([label, items]) => (
             <details key={label} className="border-b border-white/10 py-2">
-              <summary className="cursor-pointer text-xs font-mono uppercase text-emerald-300 py-1">{label}</summary>
+              <summary className="cursor-pointer text-xs font-mono uppercase text-[#73B9EE] py-1">{label}</summary>
               {items.map((i) =>
                 i.path ? (
                   <Link
@@ -172,7 +175,7 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
           <div className="mt-4">
             <button
               onClick={onGetStarted}
-              className="w-full rounded-sm bg-emerald-400 px-4 py-2.5 text-xs font-bold uppercase text-slate-950"
+              className="w-full rounded-sm bg-[#5494DA] hover:bg-[#73B9EE] px-4 py-2.5 text-xs font-bold uppercase text-white shadow-md shadow-[#5494DA]/25"
             >
               GET STARTED
             </button>

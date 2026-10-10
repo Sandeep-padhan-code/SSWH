@@ -64,7 +64,7 @@ export const LoginPage: React.FC = () => {
           Welcome to SSWH
         </h2>
         <p className="text-xs text-slate-400 font-sans">
-          Sign in to access your intelligent water harvesting environment.
+          Sign in to access your SSWH-Smart Sustainable Water Harvesting environment.
         </p>
       </div>
 
@@ -98,7 +98,7 @@ export const LoginPage: React.FC = () => {
               required
               autoComplete="email"
               disabled={isLoading}
-              className="w-full pl-9 pr-3.5 py-2.5 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all duration-150 disabled:opacity-50"
+              className="w-full pl-9 pr-3.5 py-2.5 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all duration-150 disabled:opacity-50"
               placeholder="operator@sswh.io or resident@sswh.io"
             />
           </div>
@@ -115,7 +115,7 @@ export const LoginPage: React.FC = () => {
             </label>
             <Link
               to="/forgot-password"
-              className="text-xs text-emerald-400/90 hover:text-emerald-300 hover:underline transition-colors"
+              className="text-xs text-[#73B9EE] hover:text-[#86CEFA] hover:underline transition-colors"
             >
               Forgot Password?
             </Link>
@@ -130,7 +130,7 @@ export const LoginPage: React.FC = () => {
               required
               autoComplete="current-password"
               disabled={isLoading}
-              className="w-full pl-9 pr-10 py-2.5 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all duration-150 disabled:opacity-50"
+              className="w-full pl-9 pr-10 py-2.5 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all duration-150 disabled:opacity-50"
               placeholder="••••••••"
             />
             <button
@@ -148,7 +148,7 @@ export const LoginPage: React.FC = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all duration-200 shadow-lg shadow-emerald-500/20 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#5494DA] hover:bg-[#73B9EE] text-white text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all duration-200 shadow-lg shadow-[#5494DA]/30 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           {isLoading ? (
             <>
@@ -169,7 +169,7 @@ export const LoginPage: React.FC = () => {
         Don&apos;t have an account?{' '}
         <Link
           to="/register"
-          className="font-semibold text-emerald-400 hover:text-emerald-300 hover:underline transition-colors"
+          className="font-semibold text-[#73B9EE] hover:text-[#86CEFA] hover:underline transition-colors"
         >
           Sign Up
         </Link>

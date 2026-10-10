@@ -61,7 +61,7 @@ export const PlatformArchitecture: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 text-emerald-400 font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
+          <div className="inline-flex items-center gap-2 text-[#5494DA] font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
             <span>// ARCHITECTURAL FOUNDATION</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-light tracking-tight mb-5">
@@ -79,19 +79,19 @@ export const PlatformArchitecture: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="group relative flex flex-col justify-between p-8 bg-slate-950/60 border border-white/10 hover:border-emerald-500/40 transition-all duration-300 rounded-sm"
+                className="group relative flex flex-col justify-between p-8 bg-slate-950/60 border border-white/10 hover:border-[#5494DA]/50 transition-all duration-300 rounded-sm"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="font-serif text-3xl text-emerald-400/80 font-light">
+                    <span className="font-serif text-3xl text-[#5494DA]/80 font-light">
                       {sub.num}
                     </span>
-                    <div className="p-2 rounded bg-white/5 text-slate-400 group-hover:text-emerald-300 transition-colors">
+                    <div className="p-2 rounded bg-white/5 text-slate-400 group-hover:text-[#73B9EE] transition-colors">
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
 
-                  <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-emerald-400/90 mb-2">
+                  <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#73B9EE] mb-2">
                     {sub.category}
                   </div>
 
@@ -107,10 +107,10 @@ export const PlatformArchitecture: React.FC = () => {
                 <div className="pt-4 border-t border-white/10">
                   <Link
                     to={sub.linkPath}
-                    className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.16em] uppercase text-white group-hover:text-emerald-300 transition-colors"
+                    className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.16em] uppercase text-white group-hover:text-[#73B9EE] transition-colors"
                   >
                     <span>{sub.linkText}</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 text-emerald-400" />
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 text-[#5494DA]" />
                   </Link>
                 </div>
               </div>
@@ -118,12 +118,12 @@ export const PlatformArchitecture: React.FC = () => {
           })}
 
           {/* Direct CTA card to existing dashboard */}
-          <div className="flex flex-col justify-between p-8 bg-gradient-to-br from-emerald-950/40 via-slate-950/80 to-black border border-emerald-500/30 rounded-sm">
+          <div className="flex flex-col justify-between p-8 bg-gradient-to-br from-[#5494DA]/20 via-slate-950/80 to-black border border-[#5494DA]/30 rounded-sm">
             <div>
-              <span className="font-serif text-3xl text-emerald-300 font-light">
+              <span className="font-serif text-3xl text-[#73B9EE] font-light">
                 06
               </span>
-              <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-emerald-400/90 mt-6 mb-2">
+              <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-[#86CEFA] mt-6 mb-2">
                 UNIFIED OPERATIONS
               </div>
               <h3 className="font-serif text-2xl text-white font-normal tracking-tight mb-3">
@@ -137,7 +137,7 @@ export const PlatformArchitecture: React.FC = () => {
             <div className="pt-4 border-t border-white/10">
               <Link
                 to="/dashboard"
-                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-bold tracking-[0.18em] uppercase rounded-sm transition-all duration-300"
+                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-[#5494DA] hover:bg-[#73B9EE] text-white text-xs font-bold tracking-[0.18em] uppercase rounded-sm transition-all duration-300 shadow-md shadow-[#5494DA]/25"
               >
                 <span>ENTER COMMAND CENTER</span>
                 <ArrowRight className="w-4 h-4" />

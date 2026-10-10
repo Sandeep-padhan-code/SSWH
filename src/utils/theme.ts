@@ -1,28 +1,36 @@
 /**
  * SSWH Master Visual Color System & Design Tokens
  * Centralized theme constants adhering strictly to the SSWH visual identity.
+ * Primary blue: #5494DA
+ * Secondary blue: #73B9EE
+ * Light blue: #86CEFA
  */
 
 export const SSWH_COLORS = {
-  // Brand Color System
-  forest: '#0F4D3A', // Primary Deep Forest
-  teal: '#0B6B73', // Secondary Deep Teal
-  green: '#3F6B4F', // Natural Green
-  mist: '#DCEAE4', // Soft Mist Green
-  background: '#F4F8F5', // Pale Background
+  // Required Exact Blue Color System
+  primaryBlue: '#5494DA',
+  secondaryBlue: '#73B9EE',
+  lightBlue: '#86CEFA',
+
+  // Brand Color System (Mapped to exact blue palette)
+  forest: '#5494DA', // Primary Blue
+  teal: '#73B9EE', // Secondary Blue
+  green: '#86CEFA', // Light Blue
+  mist: '#EAF3FD', // Soft Mist Blue
+  background: '#F4F8FB', // Light Blue-tinted Neutral
   white: '#FFFFFF', // Pure White
-  text: '#10251F', // Dark Text
-  textSecondary: '#587068', // Secondary Text
-  textMuted: '#71877F', // Inactive icons / neutral text
-  border: '#D6E3DD', // Standard Border
-  borderLight: '#E5EEE9', // Subtle Border & Grid Lines
+  text: '#0E1B2A', // Dark Blue-Grey Text
+  textSecondary: '#4A637D', // Secondary Slate Text
+  textMuted: '#6D869F', // Inactive icons / neutral text
+  border: '#D1E2F5', // Standard Border
+  borderLight: '#E4EFFB', // Subtle Border & Grid Lines
 
   // Water Data Colors
-  water: '#0B6B73', // Primary Water
-  waterSecondary: '#4FA3A5', // Secondary Water
-  waterLight: '#B9DDDD', // Light Water
+  water: '#5494DA', // Primary Water (Primary Blue)
+  waterSecondary: '#73B9EE', // Secondary Water (Secondary Blue)
+  waterLight: '#86CEFA', // Light Water (Light Blue)
 
-  // Status & Telemetry States
+  // Status & Telemetry States (PRESERVED FOR OPERATIONAL SAFETY)
   status: {
     normal: '#18A878',
     normalBg: '#E4F5EE',
@@ -30,31 +38,31 @@ export const SSWH_COLORS = {
     warningBg: '#FFF3D8',
     critical: '#C94B5B',
     criticalBg: '#FBE8EB',
-    info: '#0B6B73',
-    infoBg: '#E3F2F2',
+    info: '#5494DA',
+    infoBg: '#EAF3FD',
   },
 
-  // Tank Level Thresholds (Section 9)
+  // Tank Level Thresholds (Preserving functional thresholds)
   tank: {
-    level0_20: '#D96C75', // 0-20%
-    level20_40: '#E7A45B', // 20-40%
-    level40_70: '#4FA3A5', // 40-70% (Water teal)
-    level70_100: '#0F4D3A', // 70-100% (Deep forest)
+    level0_20: '#D96C75', // 0-20% (Critical)
+    level20_40: '#E7A45B', // 20-40% (Warning)
+    level40_70: '#73B9EE', // 40-70% (Secondary Blue)
+    level70_100: '#5494DA', // 70-100% (Primary Blue)
   },
 
   // Chart Visualization Palette
   chart: {
-    primary: '#0F4D3A', // Deep Forest (most important series)
-    water: '#0B6B73', // Deep Teal (water-related series)
-    secondaryWater: '#4FA3A5', // Soft Teal (secondary comparison)
-    natural: '#6FA68A', // Natural Green (environmental)
+    primary: '#5494DA', // Primary Blue (most important series)
+    water: '#73B9EE', // Secondary Blue (water-related series)
+    secondaryWater: '#86CEFA', // Light Blue (secondary comparison)
+    natural: '#5494DA', // Environmental series
     highlight: '#D9A441', // Warm Amber (highlighted thresholds)
     warning: '#D99024',
     critical: '#C94B5B',
-    neutral: '#A8BBB3',
-    grid: '#E5EEE9',
-    axis: '#587068',
-    areaFill: 'rgba(15, 77, 58, 0.08)',
+    neutral: '#9BB8D3',
+    grid: '#E4EFFB',
+    axis: '#4A637D',
+    areaFill: 'rgba(84, 148, 218, 0.12)',
   },
 } as const
 
@@ -91,7 +99,7 @@ export function getStatusTheme(severity: 'NORMAL' | 'WARNING' | 'CRITICAL' | 'IN
     return {
       color: SSWH_COLORS.status.info,
       bg: SSWH_COLORS.status.infoBg,
-      border: '#BFE4E4',
+      border: '#D1E2F5',
     }
   }
   return {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import sswhLogo from '@/Logo/SSWH-LOGO.jpg'
 import {
   LayoutDashboard,
   Activity,
@@ -59,7 +60,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentRole }
           path: '/live-operations',
           icon: Activity,
           badge: 'Live',
-          badgeColor: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+          badgeColor: 'bg-[#EAF3FD] text-[#5494DA] border border-[#D1E2F5]',
         },
         { name: 'Process Flow Mimic', path: '/process-flow', icon: Workflow },
         { name: 'Storage Reservoirs', path: '/tanks', icon: Database, badge: '4 Tanks' },
@@ -129,30 +130,40 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentRole }
       {isOpen && (
         <div
           onClick={onClose}
-          className="fixed inset-0 bg-[#10231F]/35 backdrop-blur-[2px] z-40"
+          className="fixed inset-0 bg-[#0E1B2A]/40 backdrop-blur-[2px] z-40"
         />
       )}
 
       {/* Sidebar Drawer */}
       <aside
         className={cn(
-          'fixed top-0 left-0 z-50 h-dvh w-[19rem] bg-white border-r border-[#DDE6E2] flex flex-col justify-between transition-transform duration-250 ease-out select-none shadow-2xl',
+          'fixed top-0 left-0 z-50 h-dvh w-[19rem] bg-white border-r border-[#D1E2F5] flex flex-col justify-between transition-transform duration-250 ease-out select-none shadow-2xl',
           isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
         {/* Sidebar Header */}
-        <div className="flex items-center justify-between p-4 border-b border-[#DDE6E2] bg-[#F7F9F8]">
-          <div>
-            <span className="font-bold text-xs text-[#10251F] uppercase tracking-wider block">
-              Navigation Menu
-            </span>
-            <span className="text-[10px] text-[#075B48] font-mono font-semibold">
-              Role: {roleTitle}
-            </span>
+        <div className="flex items-center justify-between p-4 border-b border-[#D1E2F5] bg-[#F4F8FB]">
+          <div className="flex items-center gap-2.5">
+            <img
+              src={sswhLogo}
+              alt="SSWH Logo"
+              className="h-8 w-8 rounded object-contain bg-white p-0.5 border border-[#D1E2F5] shadow-sm shrink-0"
+            />
+            <div>
+              <span className="font-bold text-xs text-[#0E1B2A] tracking-tight block">
+                SSWH
+              </span>
+              <span className="text-[10px] text-[#4A637D] block leading-tight font-medium">
+                Smart Sustainable Water Harvesting
+              </span>
+              <span className="text-[10px] text-[#5494DA] font-mono font-semibold">
+                Role: {roleTitle}
+              </span>
+            </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded text-[#587068] hover:bg-[#DCEAE4] cursor-pointer"
+            className="p-1 rounded text-[#4A637D] hover:bg-[#EAF3FD] cursor-pointer"
             aria-label="Close sidebar"
           >
             <X className="h-4 w-4" />
@@ -171,7 +182,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentRole }
 
             return (
               <div key={group.label} className="space-y-1">
-                <div className="px-2 mb-1 text-[10px] font-mono font-bold text-[#587068] uppercase tracking-wider">
+                <div className="px-2 mb-1 text-[10px] font-mono font-bold text-[#4A637D] uppercase tracking-wider">
                   {group.label}
                 </div>
                 <div className="space-y-0.5">
@@ -186,8 +197,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentRole }
                           cn(
                             'group flex items-center justify-between px-2.5 py-1.5 rounded text-xs transition-colors',
                             isActive
-                              ? 'bg-[#0F4D3A] text-white font-medium'
-                              : 'text-[#3F514B] hover:bg-[#F4F8F5] hover:text-[#10251F]'
+                              ? 'bg-[#5494DA] text-white font-medium'
+                              : 'text-[#4A637D] hover:bg-[#F4F8FB] hover:text-[#0E1B2A]'
                           )
                         }
                       >
@@ -199,7 +210,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentRole }
                                   'h-3.5 w-3.5 shrink-0',
                                   isActive
                                     ? 'text-white'
-                                    : 'text-[#71877F] group-hover:text-[#0F4D3A]'
+                                    : 'text-[#6D869F] group-hover:text-[#5494DA]'
                                 )}
                               />
                               <span className="truncate">{item.name}</span>
@@ -211,7 +222,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentRole }
                                   isActive
                                     ? 'bg-white/20 text-white'
                                     : item.badgeColor ||
-                                        'bg-[#F4F8F5] text-[#587068] border border-[#D6E3DD]'
+                                        'bg-[#F4F8FB] text-[#4A637D] border border-[#D1E2F5]'
                                 )}
                               >
                                 {item.badge}
@@ -229,15 +240,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentRole }
         </div>
 
         {/* Bottom Hardware & Security Footer */}
-        <div className="p-3 border-t border-[#D6E3DD] bg-[#F4F8F5] text-[11px]">
-          <div className="flex items-center justify-between text-[#10251F] font-semibold mb-1">
+        <div className="p-3 border-t border-[#D1E2F5] bg-[#F4F8FB] text-[11px]">
+          <div className="flex items-center justify-between text-[#0E1B2A] font-semibold mb-1">
             <span className="flex items-center gap-1.5 font-mono text-[10px]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#18A878]" />
               {roleTitle}
             </span>
-            <span className="text-[10px] font-mono text-[#075B48]">RBAC SECURE</span>
+            <span className="text-[10px] font-mono text-[#5494DA]">RBAC SECURE</span>
           </div>
-          <p className="text-[10px] text-[#587068] leading-tight">
+          <p className="text-[10px] text-[#4A637D] leading-tight">
             Protected session • Access Level: {normalized}
           </p>
         </div>

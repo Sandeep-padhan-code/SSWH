@@ -32,7 +32,7 @@ export const LandingPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#060c0e] text-slate-100 flex flex-col font-sans selection:bg-emerald-400 selection:text-slate-950">
+    <div className="min-h-screen bg-[#060c0e] text-slate-100 flex flex-col font-sans selection:bg-[#5494DA] selection:text-white">
       {/* Editorial Top Navigation */}
       <LandingNav onGetStarted={handleGetStarted} />
 
@@ -68,8 +68,8 @@ export const LandingPage: React.FC = () => {
         {/* 09 — FINAL CTA: "Explore / Get Started" */}
         <section className="relative z-10 bg-[#05090b] py-24 border-b border-white/10 overflow-hidden">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-emerald-300 text-xs font-mono uppercase tracking-[0.2em] mb-6">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-[#86CEFA] text-xs font-mono uppercase tracking-[0.2em] mb-6">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#73B9EE]" />
               <span>READY FOR REAL-TIME OPERATIONS</span>
             </div>
 
@@ -83,7 +83,7 @@ export const LandingPage: React.FC = () => {
 
             <button
               onClick={handleGetStarted}
-              className="inline-flex items-center gap-3 px-9 py-4 bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs font-bold tracking-[0.2em] uppercase rounded-sm transition-all duration-300 shadow-xl shadow-emerald-500/20 active:scale-[0.98] cursor-pointer"
+              className="inline-flex items-center gap-3 px-9 py-4 bg-[#5494DA] hover:bg-[#73B9EE] text-slate-950 text-xs font-bold tracking-[0.2em] uppercase rounded-sm transition-all duration-300 shadow-xl shadow-[#5494DA]/20 active:scale-[0.98] cursor-pointer"
               id="cta-enter-dashboard-btn"
             >
               <span>GET STARTED</span>

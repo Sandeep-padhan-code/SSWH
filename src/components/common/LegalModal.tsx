@@ -116,12 +116,12 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
         {/* Footer */}
         <div className="p-3 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
           <div className="flex items-center gap-1.5 text-[11px] text-slate-500 font-mono">
-            <CheckCircle className="h-3.5 w-3.5 text-emerald-600" />
+            <CheckCircle className="h-3.5 w-3.5 text-[#5494DA]" />
             Compliance Verified
           </div>
           <button
             onClick={onClose}
-            className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-medium cursor-pointer transition-colors"
+            className="px-3 py-1.5 bg-[#5494DA] hover:bg-[#73B9EE] text-white rounded text-xs font-medium cursor-pointer transition-colors"
           >
             Acknowledge & Close
           </button>

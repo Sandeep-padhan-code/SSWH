@@ -7,7 +7,7 @@ export const FutureImpact: React.FC = () => {
       phase: 'PHASE 01',
       title: 'Software SCADA & Telemetry Prototype',
       status: 'IMPLEMENTED',
-      statusColor: 'text-emerald-400 border-emerald-500/30 bg-emerald-950/40',
+      statusColor: 'text-[#86CEFA] border-[#5494DA]/30 bg-[#5494DA]/15',
       icon: CheckCircle2,
       points: [
         'Full web-based SCADA interface',
@@ -68,7 +68,7 @@ export const FutureImpact: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 text-emerald-400 font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
+          <div className="inline-flex items-center gap-2 text-[#73B9EE] font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
             <span>// FUTURE DIRECTION & SYSTEM EVOLUTION</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-light tracking-tight mb-5">
@@ -86,7 +86,7 @@ export const FutureImpact: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="p-6 bg-slate-950/70 border border-white/10 hover:border-emerald-500/40 rounded-sm transition-all flex flex-col justify-between"
+                className="p-6 bg-slate-950/70 border border-white/10 hover:border-[#5494DA]/50 rounded-sm transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -99,14 +99,14 @@ export const FutureImpact: React.FC = () => {
                   </div>
 
                   <h3 className="font-serif text-xl text-white font-normal mb-4 flex items-center gap-2">
-                    <Icon className="w-4 h-4 shrink-0 text-emerald-400" />
+                    <Icon className="w-4 h-4 shrink-0 text-[#5494DA]" />
                     <span>{phase.title}</span>
                   </h3>
 
                   <ul className="space-y-2.5 mb-6">
                     {phase.points.map((pt, i) => (
                       <li key={i} className="flex items-start gap-2 text-xs font-sans text-slate-300 font-light">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0 mt-1.5" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#5494DA] shrink-0 mt-1.5" />
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -115,7 +115,7 @@ export const FutureImpact: React.FC = () => {
 
                 <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-500">
                   <span>EVOLUTION MILESTONE</span>
-                  <span className="text-emerald-400">0{idx + 1}/03</span>
+                  <span className="text-[#73B9EE]">0{idx + 1}/03</span>
                 </div>
               </div>
             )
@@ -123,9 +123,9 @@ export const FutureImpact: React.FC = () => {
         </div>
 
         {/* Real-world Environmental Impact */}
-        <div className="p-8 sm:p-10 bg-gradient-to-br from-emerald-950/30 via-slate-950/80 to-black border border-emerald-500/30 rounded-sm">
-          <div className="flex items-center gap-2 text-emerald-400 font-mono text-[11px] uppercase tracking-[0.2em] mb-4">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+        <div className="p-8 sm:p-10 bg-gradient-to-br from-[#5494DA]/15 via-slate-950/80 to-black border border-[#5494DA]/30 rounded-sm">
+          <div className="flex items-center gap-2 text-[#73B9EE] font-mono text-[11px] uppercase tracking-[0.2em] mb-4">
+            <Sparkles className="w-4 h-4 text-[#5494DA]" />
             <span>REAL-WORLD ECOLOGICAL & OPERATIONAL IMPACT</span>
           </div>
 
@@ -136,7 +136,7 @@ export const FutureImpact: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {impactPoints.map((item, i) => (
               <div key={i} className="p-5 bg-white/5 border border-white/5 rounded-sm">
-                <h4 className="font-serif text-lg text-emerald-300 font-normal mb-2">
+                <h4 className="font-serif text-lg text-[#86CEFA] font-normal mb-2">
                   {item.title}
                 </h4>
                 <p className="font-sans text-xs text-slate-300 leading-relaxed font-light">

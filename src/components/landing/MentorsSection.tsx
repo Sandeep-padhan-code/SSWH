@@ -1,231 +1,424 @@
 import React, { useState } from 'react'
-import { RotateCw, CornerDownLeft, Sparkles, ShieldCheck } from 'lucide-react'
+import { ChevronRight, ChevronLeft, Sparkles, ShieldCheck } from 'lucide-react'
 import { mentorsData, Mentor } from '@/data/mentorData'
 
 export const MentorsSection: React.FC = () => {
-  const [flippedCards, setFlippedCards] = useState<Record<string, boolean>>({})
+  const [activeProfile, setActiveProfile] = useState<'director' | 'mentor' | null>(null)
 
-  const handleCardToggle = (id: string) => {
-    setFlippedCards((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }))
+  const director: Mentor | undefined =
+    mentorsData.find((m) => m.role.toLowerCase() === 'director') || mentorsData[0]
+  const mentor: Mentor | undefined =
+    mentorsData.find((m) => m.role.toLowerCase() === 'mentor') || mentorsData[1]
+
+  if (!director && !mentor) return null
+
+  const handleToggle = (type: 'director' | 'mentor') => {
+    setActiveProfile((prev) => (prev === type ? null : type))
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent, id: string) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      handleCardToggle(id)
-    }
+  const handleClose = () => {
+    setActiveProfile(null)
   }
 
   return (
     <section
       id="mentors"
-      className="relative z-10 bg-[#05090b] py-20 lg:py-28 border-b border-white/10 overflow-hidden"
+      className="relative z-10 overflow-hidden border-b border-white/10 bg-[#05090b] py-20 lg:py-28"
     >
-      {/* Subtle Ambient Background Depth */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-950/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-950/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="pointer-events-none absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-[#5494DA]/15 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-[#73B9EE]/10 blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Introduction */}
-        <div className="max-w-3xl mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 text-emerald-400 font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-14">
+          <div className="mb-3 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[#5494DA]">
             <span>// THE GUIDING MINDS</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-light tracking-tight mb-5">
+
+          <h2 className="mb-5 font-serif text-3xl font-light tracking-tight text-white sm:text-4xl md:text-5xl">
             Guided by experience. Driven by purpose.
           </h2>
-          <p className="font-sans text-slate-300 text-base sm:text-lg leading-relaxed font-light">
-            Visionary leadership and seasoned technical advisory steering SSWH from research innovation to municipal-scale intelligent water infrastructure.
+
+          <p className="font-sans text-base font-light leading-relaxed text-slate-300 sm:text-lg">
+            Visionary leadership and technical guidance steering SSWH toward intelligent water infrastructure.
           </p>
         </div>
 
-        {/* Two Equal Vertical Halves (50% / 50% split on desktop, stacked on mobile) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 lg:divide-x lg:divide-white/10 border border-white/10 bg-slate-950/40 rounded-sm overflow-hidden backdrop-blur-sm shadow-2xl">
-          {mentorsData.map((mentor: Mentor) => {
-            const isFlipped = !!flippedCards[mentor.id]
-
-            return (
-              <div
-                key={mentor.id}
-                className="perspective-1200 w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] p-4 sm:p-6 lg:p-8 flex flex-col"
+        {/* STATE 1: BOTH PORTRAITS BALANCED SIDE-BY-SIDE */}
+        {activeProfile === null && director && mentor && (
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8 transition-all duration-500">
+            {/* Director Card */}
+            <div className="overflow-hidden rounded-sm border border-white/10 bg-slate-950/50 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:border-[#5494DA]/35">
+              <button
+                type="button"
+                onClick={() => handleToggle('director')}
+                aria-expanded={false}
+                aria-controls="director-profile-panel"
+                aria-label={`View ${director.name}'s Director profile`}
+                className="group relative block h-[520px] w-full cursor-pointer overflow-hidden bg-slate-950 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#5494DA] md:h-[620px]"
               >
-                {/* 3D Flip Card Container */}
-                <div
-                  className={`relative w-full flex-1 rounded-sm transform-style-3d transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
-                    isFlipped ? 'rotate-y-180' : ''
-                  }`}
-                >
-                  {/* ==================================================== */}
-                  {/* FRONT SIDE (Full-Color Portrait & Identity) */}
-                  {/* ==================================================== */}
-                  <div
-                    tabIndex={isFlipped ? -1 : 0}
-                    role="button"
-                    aria-label={`View profile of ${mentor.name}, ${mentor.role}. Click or press Enter to flip card.`}
-                    aria-expanded={isFlipped}
-                    onClick={() => handleCardToggle(mentor.id)}
-                    onKeyDown={(e) => handleKeyDown(e, mentor.id)}
-                    className="backface-hidden absolute inset-0 w-full h-full rounded-sm overflow-hidden border border-white/10 hover:border-emerald-500/40 bg-slate-950 flex flex-col justify-between p-6 sm:p-8 cursor-pointer transition-all duration-300 group select-none shadow-lg"
-                  >
-                    {/* Background Photograph — FULL COLOR at all times, no grayscale filter */}
-                    <div className="absolute inset-0 z-0 overflow-hidden">
-                      <img
-                        src={mentor.image}
-                        alt={`${mentor.name} - ${mentor.role}`}
-                        className="w-full h-full object-cover object-top brightness-[0.96] contrast-[1.04] group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-                        loading="lazy"
-                      />
-                      {/* Cinematic Multi-Layer Gradient Overlays */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#05090b] via-[#05090b]/35 to-transparent z-10" />
-                      <div className="absolute inset-0 bg-gradient-to-b from-[#05090b]/75 via-transparent to-[#05090b]/80 z-10" />
-                    </div>
+                <img
+                  src={director.image}
+                  alt={`${director.name} — ${director.role}`}
+                  className="absolute inset-0 h-full w-full object-cover object-top brightness-[0.96] contrast-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
 
-                    {/* Front Top Bar: Small Label */}
-                    <div className="relative z-20 flex items-center justify-between">
-                      <div className="inline-flex items-center gap-2 bg-slate-950/85 backdrop-blur-md px-3 py-1.5 rounded-sm border border-emerald-500/30">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-emerald-300 font-semibold">
-                          {mentor.label}
-                        </span>
-                      </div>
-                    </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#05090b] via-[#05090b]/35 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#05090b]/70 via-transparent to-[#05090b]/70" />
 
-                    {/* Front Bottom Bar: Name, Role & Interaction Indicator */}
-                    <div className="relative z-20 space-y-4 pt-8">
-                      <div>
-                        <div className="text-xs font-mono uppercase tracking-[0.2em] text-emerald-400 font-semibold mb-1">
-                          {mentor.role}
-                        </div>
-                        <h3 className="font-serif text-3xl sm:text-4xl text-white font-normal tracking-tight">
-                          {mentor.name}
-                        </h3>
-                      </div>
+                <div className="absolute left-6 right-6 top-6 z-10 flex items-center justify-between sm:left-8 sm:right-8 sm:top-8">
+                  <span className="inline-flex items-center gap-2 rounded-sm border border-[#5494DA]/30 bg-slate-950/85 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#73B9EE] backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#5494DA]" />
+                    {director.label}
+                  </span>
 
-                      {/* Flip Prompt Trigger */}
-                      <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                        <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-300 group-hover:text-emerald-200 tracking-wider transition-colors">
-                          <span className="uppercase tracking-[0.16em] font-medium text-[11px]">
-                            VIEW PROFILE
-                          </span>
-                          <RotateCw className="w-3.5 h-3.5 text-emerald-400 group-hover:rotate-180 transition-transform duration-500" />
-                        </div>
-                        <span className="text-[10px] font-mono text-slate-400 tracking-wider uppercase hidden sm:inline-block">
-                          CLICK TO FLIP
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <span className="rounded-sm border border-white/15 bg-black/40 p-2 text-[#73B9EE] backdrop-blur-sm transition-transform duration-300 group-hover:translate-x-1">
+                    <ChevronRight className="h-4 w-4" />
+                  </span>
+                </div>
 
-                  {/* ==================================================== */}
-                  {/* BACK SIDE (Structured Profile & Placeholders) */}
-                  {/* ==================================================== */}
-                  <div
-                    tabIndex={isFlipped ? 0 : -1}
-                    role="region"
-                    aria-label={`Detailed profile and credentials for ${mentor.name}`}
-                    className="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-sm overflow-y-auto border border-emerald-500/30 bg-gradient-to-br from-[#061410] via-[#05090b] to-[#040809] flex flex-col justify-between p-6 sm:p-8 shadow-2xl select-text"
-                  >
-                    {/* Technical Corner Accents */}
-                    <div className="absolute top-2 left-2 text-[9px] font-mono text-emerald-500/30 pointer-events-none select-none">
-                      +
-                    </div>
-                    <div className="absolute top-2 right-2 text-[9px] font-mono text-emerald-500/30 pointer-events-none select-none">
-                      +
-                    </div>
-                    <div className="absolute bottom-2 left-2 text-[9px] font-mono text-emerald-500/30 pointer-events-none select-none">
-                      +
-                    </div>
-                    <div className="absolute bottom-2 right-2 text-[9px] font-mono text-emerald-500/30 pointer-events-none select-none">
-                      +
-                    </div>
+                <div className="absolute bottom-0 left-0 right-0 z-10 p-6 pt-16 sm:p-8">
+                  <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                    {director.role}
+                  </p>
 
-                    <div className="space-y-5">
-                      {/* Back Header */}
-                      <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald-400 font-semibold bg-emerald-950/40 px-2.5 py-1 rounded-sm border border-emerald-500/30">
-                          {mentor.label}
-                        </span>
-                        <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-                          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                          <span>SSWH OVERSIGHT</span>
-                        </div>
-                      </div>
+                  <h3 className="font-serif text-3xl font-normal tracking-tight text-white sm:text-4xl">
+                    {director.name}
+                  </h3>
 
-                      {/* Mentor Identity */}
-                      <div>
-                        <h3 className="font-serif text-2xl sm:text-3xl text-white font-normal tracking-tight mb-0.5">
-                          {mentor.name}
-                        </h3>
-                        <p className="font-mono text-xs uppercase tracking-[0.18em] text-emerald-300 font-medium">
-                          {mentor.role}
-                        </p>
-                      </div>
+                  <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4">
+                    <span className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-[#86CEFA]">
+                      CLICK TO VIEW PROFILE
+                    </span>
 
-                      {/* Section 1: DESCRIPTION */}
-                      <div className="pt-2 border-t border-white/10">
-                        <span className="block text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 font-semibold mb-1.5">
-                          DESCRIPTION
-                        </span>
-                        <p className="font-sans text-xs sm:text-sm text-slate-200 font-light leading-relaxed">
-                          {mentor.description}
-                        </p>
-                        {/* <!-- DESCRIPTION_PLACEHOLDER --> */}
-                      </div>
-
-                      {/* Section 2: EXPERTISE */}
-                      <div className="pt-2 border-t border-white/10">
-                        <span className="block text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 font-semibold mb-1.5">
-                          EXPERTISE
-                        </span>
-                        <p className="font-sans text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                          {mentor.expertise}
-                        </p>
-                        {/* <!-- EXPERTISE_PLACEHOLDER --> */}
-                      </div>
-
-                      {/* Section 3: EXPERIENCE */}
-                      <div className="pt-2 border-t border-white/10">
-                        <span className="block text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-400 font-semibold mb-1.5">
-                          EXPERIENCE
-                        </span>
-                        <p className="font-sans text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                          {mentor.experience}
-                        </p>
-                        {/* <!-- EXPERIENCE_PLACEHOLDER --> */}
-                      </div>
-                    </div>
-
-                    {/* Back Footer: Return Action */}
-                    <div className="pt-5 mt-5 border-t border-white/10 flex items-center justify-between">
-                      <button
-                        onClick={() => handleCardToggle(mentor.id)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault()
-                            handleCardToggle(mentor.id)
-                          }
-                        }}
-                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-sm bg-white/5 hover:bg-emerald-950/50 border border-white/10 hover:border-emerald-500/40 text-slate-200 hover:text-emerald-300 text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer group"
-                        aria-label={`Return to front view of ${mentor.name}`}
-                      >
-                        <CornerDownLeft className="w-3.5 h-3.5 text-emerald-400 group-hover:-translate-x-0.5 transition-transform" />
-                        <span>BACK TO PROFILE</span>
-                      </button>
-
-                      <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-slate-500">
-                        <Sparkles className="w-3 h-3 text-emerald-400" />
-                        <span>EDITORIAL PROFILE</span>
-                      </div>
-                    </div>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-300">
+                      SSWH LEADERSHIP
+                    </span>
                   </div>
                 </div>
+              </button>
+            </div>
+
+            {/* Mentor Card */}
+            <div className="overflow-hidden rounded-sm border border-white/10 bg-slate-950/50 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:border-[#5494DA]/35">
+              <button
+                type="button"
+                onClick={() => handleToggle('mentor')}
+                aria-expanded={false}
+                aria-controls="mentor-profile-panel"
+                aria-label={`View ${mentor.name}'s Mentor profile`}
+                className="group relative block h-[520px] w-full cursor-pointer overflow-hidden bg-slate-950 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#5494DA] md:h-[620px]"
+              >
+                <img
+                  src={mentor.image}
+                  alt={`${mentor.name} — ${mentor.role}`}
+                  className="absolute inset-0 h-full w-full object-cover object-top brightness-[0.96] contrast-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#05090b] via-[#05090b]/35 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#05090b]/70 via-transparent to-[#05090b]/70" />
+
+                <div className="absolute left-6 right-6 top-6 z-10 flex items-center justify-between sm:left-8 sm:right-8 sm:top-8">
+                  <span className="inline-flex items-center gap-2 rounded-sm border border-[#5494DA]/30 bg-slate-950/85 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#73B9EE] backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#5494DA]" />
+                    {mentor.label}
+                  </span>
+
+                  <span className="rounded-sm border border-white/15 bg-black/40 p-2 text-[#73B9EE] backdrop-blur-sm transition-transform duration-300 group-hover:-translate-x-1">
+                    <ChevronLeft className="h-4 w-4" />
+                  </span>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 z-10 p-6 pt-16 sm:p-8">
+                  <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                    {mentor.role}
+                  </p>
+
+                  <h3 className="font-serif text-3xl font-normal tracking-tight text-white sm:text-4xl">
+                    {mentor.name}
+                  </h3>
+
+                  <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4">
+                    <span className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-[#86CEFA]">
+                      CLICK TO VIEW PROFILE
+                    </span>
+
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-slate-300">
+                      SSWH LEADERSHIP
+                    </span>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* STATE 2: DIRECTOR EXPANDED (Opens to the right) */}
+        {activeProfile === 'director' && director && (
+          <div className="mx-auto flex max-w-6xl flex-col items-stretch overflow-hidden rounded-sm border border-white/10 bg-slate-950/50 shadow-2xl backdrop-blur-sm md:flex-row transition-all duration-700">
+            {/* Director Portrait (Smaller width on desktop) */}
+            <button
+              type="button"
+              onClick={handleClose}
+              aria-expanded={true}
+              aria-controls="director-profile-panel"
+              aria-label={`Close ${director.name}'s Director profile`}
+              className="group relative block min-h-[480px] w-full shrink-0 cursor-pointer overflow-hidden bg-slate-950 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#5494DA] md:min-h-[620px] md:w-[380px] lg:w-[420px] transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            >
+              <img
+                src={director.image}
+                alt={`${director.name} — ${director.role}`}
+                className="absolute inset-0 h-full w-full object-cover object-top brightness-[0.96] contrast-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                loading="lazy"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05090b] via-[#05090b]/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#05090b]/70 via-transparent to-[#05090b]/70" />
+
+              <div className="absolute left-6 right-6 top-6 z-10 flex items-center justify-between sm:left-8 sm:right-8 sm:top-8">
+                <span className="inline-flex items-center gap-2 rounded-sm border border-[#5494DA]/30 bg-slate-950/85 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#73B9EE] backdrop-blur-md">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#5494DA]" />
+                  {director.label}
+                </span>
+
+                <span className="rounded-sm border border-white/15 bg-black/40 p-2 text-[#73B9EE] backdrop-blur-sm transition-transform duration-500 group-hover:-translate-x-1">
+                  <ChevronLeft className="h-4 w-4" />
+                </span>
               </div>
-            )
-          })}
-        </div>
+
+              <div className="absolute bottom-0 left-0 right-0 z-10 p-6 pt-16 sm:p-8">
+                <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                  {director.role}
+                </p>
+
+                <h3 className="font-serif text-3xl font-normal tracking-tight text-white sm:text-4xl">
+                  {director.name}
+                </h3>
+
+                <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4">
+                  <span className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-[#86CEFA]">
+                    CLICK TO CLOSE
+                  </span>
+
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-slate-300">
+                    SSWH LEADERSHIP
+                  </span>
+                </div>
+              </div>
+            </button>
+
+            {/* Sliding Director Profile Panel (Revealed to the right) */}
+            <div
+              id="director-profile-panel"
+              className="flex-1 min-w-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            >
+              <div className="flex h-full min-w-0 flex-col justify-between bg-gradient-to-br from-[#08121f] via-[#05090b] to-[#040809] p-6 sm:p-8 lg:p-10">
+                <div className="space-y-6">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+                    <span className="rounded-sm border border-[#5494DA]/30 bg-[#5494DA]/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#73B9EE]">
+                      {director.label}
+                    </span>
+
+                    <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-slate-400">
+                      <ShieldCheck className="h-3.5 w-3.5 text-[#5494DA]" />
+                      <span>SSWH OVERSIGHT</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="mb-1 font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#86CEFA]">
+                      {director.role}
+                    </p>
+
+                    <h3 className="font-serif text-2xl font-normal tracking-tight text-white sm:text-3xl">
+                      {director.name}
+                    </h3>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-4">
+                    <h4 className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                      DESCRIPTION
+                    </h4>
+
+                    <p className="text-sm font-light leading-relaxed text-slate-200">
+                      {director.description}
+                    </p>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-4">
+                    <h4 className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                      EXPERTISE
+                    </h4>
+
+                    <p className="text-sm font-light leading-relaxed text-slate-300">
+                      {director.expertise}
+                    </p>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-4">
+                    <h4 className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                      EXPERIENCE
+                    </h4>
+
+                    <p className="text-sm font-light leading-relaxed text-slate-300">
+                      {director.experience}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-5">
+                  <span className="inline-flex items-center gap-2 font-mono text-[10px] text-slate-500">
+                    <Sparkles className="h-3 w-3 text-[#5494DA]" />
+                    DIRECTOR PROFILE
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={handleClose}
+                    className="inline-flex items-center gap-2 rounded-sm border border-white/10 bg-white/5 px-3.5 py-2 font-mono text-xs uppercase tracking-wider text-slate-200 transition-colors hover:border-[#5494DA]/40 hover:bg-[#5494DA]/20 hover:text-[#73B9EE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5494DA]"
+                  >
+                    <ChevronLeft className="h-3.5 w-3.5" />
+                    Close profile
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* STATE 3: MENTOR EXPANDED (Opens to the left, panel on left, portrait on right) */}
+        {activeProfile === 'mentor' && mentor && (
+          <div className="mx-auto flex max-w-6xl flex-col items-stretch overflow-hidden rounded-sm border border-white/10 bg-slate-950/50 shadow-2xl backdrop-blur-sm md:flex-row transition-all duration-700">
+            {/* Sliding Mentor Profile Panel (On desktop placed on LEFT, revealing right-to-left) */}
+            <div
+              id="mentor-profile-panel"
+              className="order-2 md:order-1 flex-1 min-w-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            >
+              <div className="flex h-full min-w-0 flex-col justify-between bg-gradient-to-br from-[#08121f] via-[#05090b] to-[#040809] p-6 sm:p-8 lg:p-10">
+                <div className="space-y-6">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+                    <span className="rounded-sm border border-[#5494DA]/30 bg-[#5494DA]/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#73B9EE]">
+                      {mentor.label}
+                    </span>
+
+                    <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-slate-400">
+                      <ShieldCheck className="h-3.5 w-3.5 text-[#5494DA]" />
+                      <span>SSWH OVERSIGHT</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="mb-1 font-mono text-xs font-medium uppercase tracking-[0.18em] text-[#86CEFA]">
+                      {mentor.role}
+                    </p>
+
+                    <h3 className="font-serif text-2xl font-normal tracking-tight text-white sm:text-3xl">
+                      {mentor.name}
+                    </h3>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-4">
+                    <h4 className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                      DESCRIPTION
+                    </h4>
+
+                    <p className="text-sm font-light leading-relaxed text-slate-200">
+                      {mentor.description}
+                    </p>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-4">
+                    <h4 className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                      EXPERTISE
+                    </h4>
+
+                    <p className="text-sm font-light leading-relaxed text-slate-300">
+                      {mentor.expertise}
+                    </p>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-4">
+                    <h4 className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                      EXPERIENCE
+                    </h4>
+
+                    <p className="text-sm font-light leading-relaxed text-slate-300">
+                      {mentor.experience}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-5">
+                  <span className="inline-flex items-center gap-2 font-mono text-[10px] text-slate-500">
+                    <Sparkles className="h-3 w-3 text-[#5494DA]" />
+                    MENTOR PROFILE
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={handleClose}
+                    className="inline-flex items-center gap-2 rounded-sm border border-white/10 bg-white/5 px-3.5 py-2 font-mono text-xs uppercase tracking-wider text-slate-200 transition-colors hover:border-[#5494DA]/40 hover:bg-[#5494DA]/20 hover:text-[#73B9EE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5494DA]"
+                  >
+                    Close profile
+                    <ChevronRight className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Mentor Portrait (On desktop placed on RIGHT) */}
+            <button
+              type="button"
+              onClick={handleClose}
+              aria-expanded={true}
+              aria-controls="mentor-profile-panel"
+              aria-label={`Close ${mentor.name}'s Mentor profile`}
+              className="order-1 md:order-2 group relative block min-h-[480px] w-full shrink-0 cursor-pointer overflow-hidden bg-slate-950 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#5494DA] md:min-h-[620px] md:w-[380px] lg:w-[420px] transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            >
+              <img
+                src={mentor.image}
+                alt={`${mentor.name} — ${mentor.role}`}
+                className="absolute inset-0 h-full w-full object-cover object-top brightness-[0.96] contrast-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                loading="lazy"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05090b] via-[#05090b]/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#05090b]/70 via-transparent to-[#05090b]/70" />
+
+              <div className="absolute left-6 right-6 top-6 z-10 flex items-center justify-between sm:left-8 sm:right-8 sm:top-8">
+                <span className="inline-flex items-center gap-2 rounded-sm border border-[#5494DA]/30 bg-slate-950/85 px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#73B9EE] backdrop-blur-md">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#5494DA]" />
+                  {mentor.label}
+                </span>
+
+                <span className="rounded-sm border border-white/15 bg-black/40 p-2 text-[#73B9EE] backdrop-blur-sm transition-transform duration-500 group-hover:translate-x-1">
+                  <ChevronRight className="h-4 w-4" />
+                </span>
+              </div>
+
+              <div className="absolute bottom-0 left-0 right-0 z-10 p-6 pt-16 sm:p-8">
+                <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#5494DA]">
+                  {mentor.role}
+                </p>
+
+                <h3 className="font-serif text-3xl font-normal tracking-tight text-white sm:text-4xl">
+                  {mentor.name}
+                </h3>
+
+                <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4">
+                  <span className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-[#86CEFA]">
+                    CLICK TO CLOSE
+                  </span>
+
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-slate-300">
+                    SSWH LEADERSHIP
+                  </span>
+                </div>
+              </div>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )

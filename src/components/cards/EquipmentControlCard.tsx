@@ -40,7 +40,7 @@ export const EquipmentControlCard: React.FC<EquipmentControlCardProps> = ({
           <div
             className={`rounded-lg p-2.5 ${
               isActive
-                ? 'bg-[#E8F5F0] text-[#075B48]'
+                ? 'bg-[#18A878]/10 text-[#18A878]'
                 : 'bg-[#F7F9F8] text-[#63736E]'
             }`}
           >
@@ -57,12 +57,12 @@ export const EquipmentControlCard: React.FC<EquipmentControlCardProps> = ({
         <span
           className={`flex items-center gap-1 text-[10px] font-mono font-bold px-2 py-0.5 rounded ${
             isActive
-              ? 'bg-[#E8F5F0] text-[#075B48] border border-[#D6E3DD]'
+              ? 'bg-[#18A878]/10 text-[#18A878] border border-[#18A878]/20'
               : 'bg-[#F7F9F8] text-[#63736E] border border-[#DDE6E2]'
           }`}
         >
           {isActive ? (
-            <CheckCircle2 className="h-3 w-3 text-[#075B48]" />
+            <CheckCircle2 className="h-3 w-3 text-[#18A878]" />
           ) : (
             <AlertCircle className="h-3 w-3 text-[#63736E]" />
           )}
@@ -93,7 +93,7 @@ export const EquipmentControlCard: React.FC<EquipmentControlCardProps> = ({
         )}
         <div>
           <span className="text-[#63736E]">Control Mode</span>
-          <p className="font-mono font-bold text-[#075B48]">REMOTE AUTO</p>
+          <p className="font-mono font-bold text-[#5494DA]">REMOTE AUTO</p>
         </div>
       </div>
 
@@ -105,7 +105,7 @@ export const EquipmentControlCard: React.FC<EquipmentControlCardProps> = ({
             className={`w-full flex items-center justify-center gap-2 rounded-lg py-2 text-xs font-semibold text-white transition-colors cursor-pointer ${
               isActive
                 ? 'bg-[#C83D3D] hover:bg-[#A82D2D]'
-                : 'bg-[#075B48] hover:bg-[#054436]'
+                : 'bg-[#5494DA] hover:bg-[#73B9EE]'
             }`}
           >
             <Power className="h-3.5 w-3.5" />

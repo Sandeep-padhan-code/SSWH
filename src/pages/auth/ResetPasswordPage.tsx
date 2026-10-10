@@ -73,7 +73,7 @@ export const ResetPasswordPage: React.FC = () => {
 
       {isSuccess ? (
         <div className="space-y-4 text-center">
-          <div className="mx-auto w-12 h-12 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 flex items-center justify-center">
+          <div className="mx-auto w-12 h-12 rounded-full bg-[#5494DA]/20 border border-[#5494DA]/40 text-[#5494DA] flex items-center justify-center">
             <CheckCircle2 className="h-6 w-6" />
           </div>
           <div className="space-y-1">
@@ -84,7 +84,7 @@ export const ResetPasswordPage: React.FC = () => {
           </div>
           <Link
             to="/login"
-            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-400 text-slate-950 text-xs sm:text-sm font-semibold uppercase tracking-wide"
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#5494DA] hover:bg-[#73B9EE] text-white text-xs sm:text-sm font-semibold uppercase tracking-wide transition-colors"
           >
             <span>Go to Sign In</span>
             <ArrowRight className="h-4 w-4" />
@@ -116,7 +116,7 @@ export const ResetPasswordPage: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={isLoading}
-                className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50"
+                className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all disabled:opacity-50"
                 placeholder="user@example.com"
               />
             </div>
@@ -137,7 +137,7 @@ export const ResetPasswordPage: React.FC = () => {
                 required
                 minLength={8}
                 disabled={isLoading}
-                className="w-full pl-9 pr-10 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50"
+                className="w-full pl-9 pr-10 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all disabled:opacity-50"
                 placeholder="••••••••"
               />
               <button
@@ -166,7 +166,7 @@ export const ResetPasswordPage: React.FC = () => {
                 required
                 minLength={8}
                 disabled={isLoading}
-                className="w-full pl-9 pr-10 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50"
+                className="w-full pl-9 pr-10 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all disabled:opacity-50"
                 placeholder="••••••••"
               />
               <button
@@ -183,7 +183,7 @@ export const ResetPasswordPage: React.FC = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50 cursor-pointer"
+            className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#5494DA] hover:bg-[#73B9EE] text-white text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all shadow-lg shadow-[#5494DA]/30 disabled:opacity-50 cursor-pointer"
           >
             {isLoading ? (
               <>
@@ -201,7 +201,7 @@ export const ResetPasswordPage: React.FC = () => {
           <div className="text-center pt-2">
             <Link
               to="/login"
-              className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-emerald-400 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-[#73B9EE] transition-colors"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               <span>Return to Sign In</span>

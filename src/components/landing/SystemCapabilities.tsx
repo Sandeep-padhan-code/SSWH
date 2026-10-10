@@ -84,7 +84,7 @@ export const SystemCapabilities: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 text-emerald-400 font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
+          <div className="inline-flex items-center gap-2 text-[#5494DA] font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
             <span>// SYSTEM CAPABILITY EXPLANATION</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-light tracking-tight mb-5">
@@ -102,13 +102,13 @@ export const SystemCapabilities: React.FC = () => {
             return (
               <div
                 key={i}
-                className="p-6 bg-slate-950/80 border border-white/10 rounded-sm hover:border-emerald-500/30 transition-all"
+                className="p-6 bg-slate-950/80 border border-white/10 rounded-sm hover:border-[#5494DA]/35 transition-all"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-2.5 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-500/20">
+                  <div className="p-2.5 rounded bg-[#5494DA]/10 text-[#5494DA] border border-[#5494DA]/30">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <span className="text-[10px] font-mono tracking-wider uppercase text-emerald-300/90 bg-white/5 px-2 py-0.5 rounded border border-white/10">
+                  <span className="text-[10px] font-mono tracking-wider uppercase text-[#73B9EE] bg-white/5 px-2 py-0.5 rounded border border-white/10">
                     {source.status}
                   </span>
                 </div>
@@ -130,12 +130,12 @@ export const SystemCapabilities: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="p-6 bg-slate-950/60 border border-white/10 hover:border-emerald-500/40 rounded-sm transition-all flex flex-col justify-between"
+                className="p-6 bg-slate-950/60 border border-white/10 hover:border-[#5494DA]/50 rounded-sm transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <div className="p-2 rounded bg-white/5 text-slate-300">
-                      <Icon className="w-4 h-4 text-emerald-400" />
+                      <Icon className="w-4 h-4 text-[#5494DA]" />
                     </div>
                     <span className="text-[9px] font-mono tracking-[0.16em] uppercase text-slate-400">
                       {item.badge}
@@ -148,7 +148,7 @@ export const SystemCapabilities: React.FC = () => {
                     {item.description}
                   </p>
                 </div>
-                <div className="pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-emerald-400/80">
+                <div className="pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] font-mono text-[#73B9EE]">
                   <ShieldCheck className="w-3 h-3" />
                   <span>DESIGN SPECIFICATION</span>
                 </div>

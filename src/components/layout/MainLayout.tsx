@@ -24,7 +24,7 @@ export const MainLayout: React.FC = () => {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F4F8F5] text-[#10251F] selection:bg-[#0F4D3A] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#F4F8FB] text-[#0E1B2A] selection:bg-[#5494DA] selection:text-white">
       {/* Primary Header */}
       <Header
         onMenuToggle={() => setIsSidebarOpen(true)}

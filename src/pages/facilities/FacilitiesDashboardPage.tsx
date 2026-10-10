@@ -40,9 +40,9 @@ const weeklyConsumptionData = [
 ]
 
 const zoneBreakdown = [
-  { name: 'Household / Restrooms', value: 42, color: '#075B48' },
-  { name: 'Cooling & HVAC', value: 28, color: '#2386A8' },
-  { name: 'Landscape Irrigation', value: 18, color: '#18A878' },
+  { name: 'Household / Restrooms', value: 42, color: '#5494DA' },
+  { name: 'Cooling & HVAC', value: 28, color: '#73B9EE' },
+  { name: 'Landscape Irrigation', value: 18, color: '#86CEFA' },
   { name: 'Kitchen & Dining', value: 12, color: '#D98A00' },
 ]
 
@@ -95,7 +95,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
       <section className="flex flex-col gap-3 border-b border-[#DDE6E2] pb-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <span className="rounded bg-[#E8F5F0] px-2 py-0.5 text-[10px] font-mono font-bold uppercase text-[#075B48] border border-[#D6E3DD]">
+            <span className="rounded bg-[#5494DA]/10 px-2 py-0.5 text-[10px] font-mono font-bold uppercase text-[#5494DA] border border-[#5494DA]/20">
               Facilities Lead Workspace
             </span>
             <span className="text-xs text-[#587068]">Facility Management & Analytics</span>
@@ -112,7 +112,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
           <button
             onClick={handleExportReport}
             disabled={reportExporting}
-            className="flex items-center gap-2 rounded-lg bg-[#075B48] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[#054436] transition-colors cursor-pointer"
+            className="flex items-center gap-2 rounded-lg bg-[#5494DA] px-3.5 py-2 text-xs font-semibold text-white hover:bg-[#73B9EE] transition-colors cursor-pointer"
           >
             <Download className="h-4 w-4" />
             {reportExporting ? 'Generating Report...' : 'Export Facility Report'}
@@ -125,10 +125,10 @@ export const FacilitiesDashboardPage: React.FC = () => {
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between">
-            <div className="rounded-lg bg-[#E8F5F0] p-2 text-[#075B48]">
+            <div className="rounded-lg bg-[#5494DA]/10 p-2 text-[#5494DA]">
               <Droplets className="h-5 w-5" />
             </div>
-            <span className="flex items-center gap-1 text-[11px] font-mono font-bold text-[#075B48]">
+            <span className="flex items-center gap-1 text-[11px] font-mono font-bold text-[#5494DA]">
               <TrendingDown className="h-3.5 w-3.5" /> -4.2% vs avg
             </span>
           </div>
@@ -143,10 +143,10 @@ export const FacilitiesDashboardPage: React.FC = () => {
 
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between">
-            <div className="rounded-lg bg-[#E8F5F0] p-2 text-[#075B48]">
+            <div className="rounded-lg bg-[#5494DA]/10 p-2 text-[#5494DA]">
               <BarChart3 className="h-5 w-5" />
             </div>
-            <span className="text-[10px] font-mono font-bold text-[#075B48] bg-[#E8F5F0] px-1.5 py-0.5 rounded">
+            <span className="text-[10px] font-mono font-bold text-[#5494DA] bg-[#5494DA]/10 px-1.5 py-0.5 rounded">
               OPTIMAL
             </span>
           </div>
@@ -154,7 +154,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
             Water Efficiency Index
           </p>
           <p className="mt-1 text-2xl font-bold font-mono text-[#10231F]">91.4%</p>
-          <p className="mt-2 text-xs text-[#075B48]">● +2.1% improvement this month</p>
+          <p className="mt-2 text-xs text-[#5494DA]">● +2.1% improvement this month</p>
         </div>
 
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-5 shadow-xs">
@@ -175,7 +175,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
 
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-5 shadow-xs">
           <div className="flex items-center justify-between">
-            <div className="rounded-lg bg-[#E9F5F8] p-2 text-[#2386A8]">
+            <div className="rounded-lg bg-[#5494DA]/10 p-2 text-[#5494DA]">
               <Building2 className="h-5 w-5" />
             </div>
             <span className="text-[10px] font-mono text-[#587068]">ESTIMATED</span>
@@ -184,7 +184,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
             Weekly Water Cost
           </p>
           <p className="mt-1 text-2xl font-bold font-mono text-[#10231F]">$1,248.50</p>
-          <p className="mt-2 text-xs text-[#2386A8]">Harvested reuse saved ~$340.00</p>
+          <p className="mt-2 text-xs text-[#5494DA]">Harvested reuse saved ~$340.00</p>
         </div>
       </section>
 
@@ -194,7 +194,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-6 shadow-xs">
           <div className="flex items-center justify-between border-b border-[#E5EEE9] pb-4 mb-4">
             <div>
-              <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#075B48]">
+              <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5494DA]">
                 Consumption Comparison
               </p>
               <h3 className="text-lg font-semibold text-[#10231F]">Weekly Water Volume & Harvesting</h3>
@@ -204,7 +204,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
               <button
                 onClick={() => setTimeframe('weekly')}
                 className={`px-3 py-1 text-xs font-medium rounded ${
-                  timeframe === 'weekly' ? 'bg-[#075B48] text-white' : 'text-[#63736E]'
+                  timeframe === 'weekly' ? 'bg-[#5494DA] text-white' : 'text-[#63736E]'
                 }`}
               >
                 Weekly
@@ -212,7 +212,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
               <button
                 onClick={() => setTimeframe('monthly')}
                 className={`px-3 py-1 text-xs font-medium rounded ${
-                  timeframe === 'monthly' ? 'bg-[#075B48] text-white' : 'text-[#63736E]'
+                  timeframe === 'monthly' ? 'bg-[#5494DA] text-white' : 'text-[#63736E]'
                 }`}
               >
                 Monthly
@@ -229,8 +229,8 @@ export const FacilitiesDashboardPage: React.FC = () => {
                 <Tooltip
                   contentStyle={{ backgroundColor: '#10231F', borderRadius: '8px', color: '#fff', fontSize: '12px' }}
                 />
-                <Bar dataKey="municipal" name="Municipal Supply (L)" fill="#2386A8" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="harvested" name="Harvested Reuse (L)" fill="#075B48" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="municipal" name="Municipal Supply (L)" fill="#73B9EE" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="harvested" name="Harvested Reuse (L)" fill="#5494DA" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -239,7 +239,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
         {/* Zone Breakdown Donut Chart */}
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-6 shadow-xs">
           <div className="border-b border-[#E5EEE9] pb-4 mb-4">
-            <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#075B48]">
+            <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5494DA]">
               Demand Breakdown
             </p>
             <h3 className="text-lg font-semibold text-[#10231F]">Consumption by Facility Zone</h3>
@@ -268,7 +268,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
           </div>
 
           <div className="mt-2 rounded-lg bg-[#F7F9F8] p-3 border border-[#E5EEE9] text-xs text-[#63736E] flex items-center gap-2">
-            <Info className="h-4 w-4 text-[#075B48] shrink-0" />
+            <Info className="h-4 w-4 text-[#5494DA] shrink-0" />
             <span>Restroom & Household zones remain the highest consumption area (42%).</span>
           </div>
         </div>
@@ -280,12 +280,12 @@ export const FacilitiesDashboardPage: React.FC = () => {
         <div className="rounded-xl border border-[#DDE6E2] bg-white p-6 shadow-xs">
           <div className="flex items-center justify-between border-b border-[#E5EEE9] pb-4 mb-4">
             <div>
-              <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#075B48]">
+              <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#5494DA]">
                 Maintenance & Equipment Health
               </p>
               <h3 className="text-lg font-semibold text-[#10231F]">Facility Issue & Leak Tracker</h3>
             </div>
-            <span className="text-xs font-mono font-semibold text-[#075B48]">3 Active Tickets</span>
+            <span className="text-xs font-mono font-semibold text-[#5494DA]">3 Active Tickets</span>
           </div>
 
           <div className="overflow-x-auto">
@@ -311,7 +311,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
                             ? 'bg-[#FFF2F2] text-[#C83D3D]'
                             : issue.severity === 'MEDIUM'
                             ? 'bg-[#FFFDF8] text-[#D98A00]'
-                            : 'bg-[#E8F5F0] text-[#075B48]'
+                            : 'bg-[#5494DA]/10 text-[#5494DA]'
                         }`}
                       >
                         {issue.severity}
@@ -345,7 +345,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-[#63736E]">Expected Baseline Flow:</span>
-                <span className="font-mono font-bold text-[#075B48]">&lt; 1.5 L/min</span>
+                <span className="font-mono font-bold text-[#18A878]">&lt; 1.5 L/min</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#63736E]">Estimated Waste Rate:</span>
@@ -356,7 +356,7 @@ export const FacilitiesDashboardPage: React.FC = () => {
 
           <div className="mt-6 pt-4 border-t border-[#E5EEE9] flex items-center justify-between text-xs text-[#63736E]">
             <span className="flex items-center gap-1">
-              <Shield className="h-4 w-4 text-[#075B48]" /> SCADA Controls Isolated
+              <Shield className="h-4 w-4 text-[#5494DA]" /> SCADA Controls Isolated
             </span>
             <span className="font-mono text-[11px]">WO #WO-849 Active</span>
           </div>
@@ -365,3 +365,4 @@ export const FacilitiesDashboardPage: React.FC = () => {
     </div>
   )
 }
+

@@ -20,7 +20,7 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({ device, className }) => 
         <div>
           <div className="flex items-center gap-1.5 font-mono text-[10px]">
             <span className="text-[#71877F] font-bold">{device.id}</span>
-            <span className="text-[#0F4D3A] bg-[#DCEAE4] border border-[#B8D4C8] px-1.5 py-0.2 rounded uppercase font-semibold">
+            <span className="text-[#5494DA] bg-[#EAF3FD] border border-[#D1E2F5] px-1.5 py-0.2 rounded uppercase font-semibold">
               {device.category}
             </span>
           </div>
@@ -40,7 +40,7 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({ device, className }) => 
           </div>
           <div className="flex justify-between">
             <span className="text-[#587068]">Protocol:</span>
-            <span className="text-[#0F4D3A] font-semibold">{device.connectivity}</span>
+            <span className="text-[#5494DA] font-semibold">{device.connectivity}</span>
           </div>
           {device.batteryLevel && (
             <div className="flex justify-between">
@@ -59,7 +59,7 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({ device, className }) => 
           <div>
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="w-full flex items-center justify-between text-[10px] text-[#587068] hover:text-[#0F4D3A] font-mono font-semibold cursor-pointer py-1"
+              className="w-full flex items-center justify-between text-[10px] text-[#587068] hover:text-[#5494DA] font-mono font-semibold cursor-pointer py-1"
             >
               <span>{isExpanded ? 'Hide Hardware Specs' : 'View Hardware Specs'}</span>
               {isExpanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}

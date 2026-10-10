@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { LegalModal } from './LegalModal'
+import sswhLogo from '@/Logo/SSWH-LOGO.jpg'
 
 export const Footer: React.FC = () => {
   const [legalType, setLegalType] = useState<'terms' | 'privacy' | 'compliance' | null>(null)
@@ -10,7 +11,8 @@ export const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3">
           {/* Left: System Identification & Standards */}
           <div className="flex flex-wrap items-center gap-3 text-[#587068]">
-            <span className="font-semibold text-[#10251F]">SSWH SCADA System</span>
+            <img src={sswhLogo} alt="SSWH Logo" className="h-4 w-4 rounded-sm object-contain" />
+            <span className="font-semibold text-[#10251F]">SSWH-Smart Sustainable Water Harvesting</span>
             <span className="text-[#D6E3DD]">|</span>
             <span className="font-mono text-[11px] text-[#587068]">Node: SSWH-ALPHA-01 (v3.4.12)</span>
             <span className="text-[#D6E3DD]">|</span>
@@ -24,21 +26,21 @@ export const Footer: React.FC = () => {
           <div className="flex items-center gap-4 text-[11px]">
             <button
               onClick={() => setLegalType('terms')}
-              className="text-[#587068] hover:text-[#0F4D3A] underline-offset-2 hover:underline cursor-pointer"
+              className="text-[#587068] hover:text-[#5494DA] underline-offset-2 hover:underline cursor-pointer"
             >
               Terms of Service
             </button>
             <span className="text-[#D6E3DD]">•</span>
             <button
               onClick={() => setLegalType('privacy')}
-              className="text-[#587068] hover:text-[#0F4D3A] underline-offset-2 hover:underline cursor-pointer"
+              className="text-[#587068] hover:text-[#5494DA] underline-offset-2 hover:underline cursor-pointer"
             >
               Privacy Policy
             </button>
             <span className="text-[#D6E3DD]">•</span>
             <button
               onClick={() => setLegalType('compliance')}
-              className="text-[#587068] hover:text-[#0F4D3A] underline-offset-2 hover:underline cursor-pointer"
+              className="text-[#587068] hover:text-[#5494DA] underline-offset-2 hover:underline cursor-pointer"
             >
               Audit Protocols
             </button>

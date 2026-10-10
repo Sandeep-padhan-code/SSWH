@@ -86,7 +86,7 @@ export const RegisterPage: React.FC = () => {
           Create SSWH Account
         </h2>
         <p className="text-xs text-slate-400 font-sans">
-          Register for intelligent water consumption telemetry & resident access.
+          Register for SSWH-Smart Sustainable Water Harvesting & resident access.
         </p>
       </div>
 
@@ -127,7 +127,7 @@ export const RegisterPage: React.FC = () => {
               onChange={(e) => setName(e.target.value)}
               required
               disabled={isLoading}
-              className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50"
+              className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all disabled:opacity-50"
               placeholder="e.g. Alex Morgan"
             />
           </div>
@@ -147,7 +147,7 @@ export const RegisterPage: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               disabled={isLoading}
-              className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50"
+              className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all disabled:opacity-50"
               placeholder="alex@example.com"
             />
           </div>
@@ -167,7 +167,7 @@ export const RegisterPage: React.FC = () => {
                 value={buildingName}
                 onChange={(e) => setBuildingName(e.target.value)}
                 disabled={isLoading}
-                className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50"
+                className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all disabled:opacity-50"
                 placeholder="Tower Alpha"
               />
             </div>
@@ -185,7 +185,7 @@ export const RegisterPage: React.FC = () => {
                 value={apartment}
                 onChange={(e) => setApartment(e.target.value)}
                 disabled={isLoading}
-                className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50"
+                className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all disabled:opacity-50"
                 placeholder="Flat 402"
               />
             </div>
@@ -207,7 +207,7 @@ export const RegisterPage: React.FC = () => {
               required
               minLength={8}
               disabled={isLoading}
-              className="w-full pl-9 pr-10 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50"
+              className="w-full pl-9 pr-10 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all disabled:opacity-50"
               placeholder="••••••••"
             />
             <button
@@ -236,7 +236,7 @@ export const RegisterPage: React.FC = () => {
               required
               minLength={8}
               disabled={isLoading}
-              className="w-full pl-9 pr-10 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50"
+              className="w-full pl-9 pr-10 py-2 text-xs sm:text-sm bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-500 focus:bg-slate-900 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] transition-all disabled:opacity-50"
               placeholder="••••••••"
             />
             <button
@@ -256,15 +256,15 @@ export const RegisterPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowPrivilegedField(true)}
-              className="text-[11px] text-slate-400 hover:text-emerald-400 flex items-center gap-1 transition-colors cursor-pointer"
+              className="text-[11px] text-slate-400 hover:text-[#73B9EE] flex items-center gap-1 transition-colors cursor-pointer"
             >
               <KeyRound className="h-3 w-3" />
               <span>Have a facility engineer or operator invitation key?</span>
             </button>
           ) : (
-            <div className="space-y-1.5 p-3 rounded-lg bg-slate-900/90 border border-emerald-500/20">
+            <div className="space-y-1.5 p-3 rounded-lg bg-slate-900/90 border border-[#5494DA]/30">
               <div className="flex items-center justify-between">
-                <label htmlFor="invitationCode" className="block text-xs font-medium text-emerald-300">
+                <label htmlFor="invitationCode" className="block text-xs font-medium text-[#86CEFA]">
                   Privileged Authorization Passcode
                 </label>
                 <button
@@ -279,14 +279,14 @@ export const RegisterPage: React.FC = () => {
                 </button>
               </div>
               <div className="relative">
-                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-400/70 pointer-events-none" />
+                <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#73B9EE]/80 pointer-events-none" />
                 <input
                   id="invitationCode"
                   type="text"
                   value={invitationCode}
                   onChange={(e) => setInvitationCode(e.target.value)}
                   disabled={isLoading}
-                  className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-slate-950 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 uppercase tracking-wider font-mono"
+                  className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-slate-950 border border-slate-700 rounded-lg text-slate-100 placeholder-slate-500 focus:border-[#5494DA] focus:outline-none focus:ring-1 focus:ring-[#5494DA] uppercase tracking-wider font-mono"
                   placeholder="e.g. SCADA-OPS-2026 or FAC-LEAD-2026"
                 />
               </div>
@@ -301,7 +301,7 @@ export const RegisterPage: React.FC = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all duration-200 shadow-lg shadow-emerald-500/20 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#5494DA] hover:bg-[#73B9EE] text-white text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all duration-200 shadow-lg shadow-[#5494DA]/30 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           {isLoading ? (
             <>
@@ -322,7 +322,7 @@ export const RegisterPage: React.FC = () => {
         Already have an account?{' '}
         <Link
           to="/login"
-          className="font-semibold text-emerald-400 hover:text-emerald-300 hover:underline transition-colors"
+          className="font-semibold text-[#73B9EE] hover:text-[#86CEFA] hover:underline transition-colors"
         >
           Sign In
         </Link>

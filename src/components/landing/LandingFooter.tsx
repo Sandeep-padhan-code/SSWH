@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
+import sswhLogo from '@/Logo/SSWH-LOGO.jpg'
 
 export const LandingFooter: React.FC = () => {
   return (
@@ -9,13 +10,20 @@ export const LandingFooter: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
           {/* Brand Info */}
           <div className="md:col-span-1 space-y-4">
-            <div className="font-serif text-2xl text-white font-normal tracking-[0.16em]">
-              SSWH
+            <div className="flex items-center gap-3">
+              <img
+                src={sswhLogo}
+                alt="SSWH Logo"
+                className="h-8 w-8 rounded object-contain bg-white p-0.5"
+              />
+              <span className="font-serif text-2xl text-white font-normal tracking-[0.16em]">
+                SSWH
+              </span>
             </div>
             <p className="text-slate-400 font-sans text-xs leading-relaxed font-light">
-              Autonomous Smart Water Harvesting System designed for continuous industrial, commercial, and municipal hydrological resilience.
+              SSWH-Smart Sustainable Water Harvesting designed for continuous industrial, commercial, and municipal hydrological resilience.
             </p>
-            <div className="text-[10px] text-emerald-400">
+            <div className="text-[10px] text-[#73B9EE]">
               BUILDING ALPHA-1 SCADA FACILITY
             </div>
           </div>
@@ -27,25 +35,25 @@ export const LandingFooter: React.FC = () => {
             </div>
             <ul className="space-y-2.5">
               <li>
-                <Link to="/dashboard" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+                <Link to="/dashboard" className="hover:text-[#73B9EE] transition-colors flex items-center gap-1">
                   <span>Command Center</span>
                   <ArrowUpRight className="w-3 h-3 text-slate-500" />
                 </Link>
               </li>
               <li>
-                <Link to="/monitoring" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+                <Link to="/monitoring" className="hover:text-[#73B9EE] transition-colors flex items-center gap-1">
                   <span>Live Sensor Matrix</span>
                   <ArrowUpRight className="w-3 h-3 text-slate-500" />
                 </Link>
               </li>
               <li>
-                <Link to="/tanks" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+                <Link to="/tanks" className="hover:text-[#73B9EE] transition-colors flex items-center gap-1">
                   <span>Storage Reservoirs</span>
                   <ArrowUpRight className="w-3 h-3 text-slate-500" />
                 </Link>
               </li>
               <li>
-                <Link to="/devices" className="hover:text-emerald-400 transition-colors flex items-center gap-1">
+                <Link to="/devices" className="hover:text-[#73B9EE] transition-colors flex items-center gap-1">
                   <span>Hardware Gateway</span>
                   <ArrowUpRight className="w-3 h-3 text-slate-500" />
                 </Link>
@@ -60,27 +68,27 @@ export const LandingFooter: React.FC = () => {
             </div>
             <ul className="space-y-2.5">
               <li>
-                <Link to="/water-quality" className="hover:text-emerald-400 transition-colors">
+                <Link to="/water-quality" className="hover:text-[#73B9EE] transition-colors">
                   Water Quality & Treatment
                 </Link>
               </li>
               <li>
-                <Link to="/consumption" className="hover:text-emerald-400 transition-colors">
+                <Link to="/consumption" className="hover:text-[#73B9EE] transition-colors">
                   Consumption Analytics
                 </Link>
               </li>
               <li>
-                <Link to="/collection" className="hover:text-emerald-400 transition-colors">
+                <Link to="/collection" className="hover:text-[#73B9EE] transition-colors">
                   Rain Catchment Topology
                 </Link>
               </li>
               <li>
-                <Link to="/recharge" className="hover:text-emerald-400 transition-colors">
+                <Link to="/recharge" className="hover:text-[#73B9EE] transition-colors">
                   Subterranean Aquifer Recharge
                 </Link>
               </li>
               <li>
-                <Link to="/wastewater" className="hover:text-emerald-400 transition-colors">
+                <Link to="/wastewater" className="hover:text-[#73B9EE] transition-colors">
                   Wastewater & Greywater Reuse
                 </Link>
               </li>
@@ -101,7 +109,7 @@ export const LandingFooter: React.FC = () => {
         {/* Bottom Credits & Status */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
           <div>
-            © 2026 SSWH SMART WATER HARVESTING SYSTEMS. ALL RIGHTS RESERVED.
+            © 2026 SSWH-SMART SUSTAINABLE WATER HARVESTING. ALL RIGHTS RESERVED.
           </div>
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5">

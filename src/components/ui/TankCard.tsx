@@ -18,8 +18,8 @@ export const TankCard: React.FC<TankCardProps> = ({ tank, onConfigure, className
   const getLevelColor = (pct: number, status: string) => {
     if (status === 'CRITICAL' || pct <= tank.criticalThreshold) return 'bg-[#C94B5B]'
     if (status === 'WARNING' || pct <= tank.warningThreshold) return 'bg-[#D99024]'
-    if (pct <= 70) return 'bg-[#4FA3A5]'
-    return 'bg-[#0F4D3A]'
+    if (pct <= 70) return 'bg-[#73B9EE]'
+    return 'bg-[#5494DA]'
   }
 
   const netFlow = (tank.inflowRate - tank.outflowRate).toFixed(1)
@@ -72,7 +72,7 @@ export const TankCard: React.FC<TankCardProps> = ({ tank, onConfigure, className
           <div className="flex-1 space-y-2">
             <div>
               <div className="flex items-baseline justify-between">
-                <span className="text-2xl font-bold font-mono tabular-nums text-[#0F4D3A] tracking-tight">
+                <span className="text-2xl font-bold font-mono tabular-nums text-[#5494DA] tracking-tight">
                   {tank.currentQuantity.toFixed(1)}
                 </span>
                 <span className="text-xs font-mono text-[#587068]">
@@ -97,7 +97,7 @@ export const TankCard: React.FC<TankCardProps> = ({ tank, onConfigure, className
               <span>Probe: {tank.sensorId}</span>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="flex items-center gap-0.5 text-[#0F4D3A] hover:text-[#0B6B73] font-semibold cursor-pointer underline underline-offset-2"
+                className="flex items-center gap-0.5 text-[#5494DA] hover:text-[#73B9EE] font-semibold cursor-pointer underline underline-offset-2"
               >
                 <span>{isExpanded ? 'Hide' : 'Specs'}</span>
                 {isExpanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
@@ -132,7 +132,7 @@ export const TankCard: React.FC<TankCardProps> = ({ tank, onConfigure, className
             {onConfigure && (
               <button
                 onClick={() => onConfigure(tank)}
-                className="w-full mt-1.5 py-1 text-center bg-white border border-[#D6E3DD] hover:bg-[#F4F8F5] text-[#0F4D3A] rounded font-sans text-xs cursor-pointer transition-colors"
+                className="w-full mt-1.5 py-1 text-center bg-white border border-[#D6E3DD] hover:bg-[#F4F8F5] text-[#5494DA] rounded font-sans text-xs cursor-pointer transition-colors"
               >
                 Re-calibrate Tank Capacity
               </button>

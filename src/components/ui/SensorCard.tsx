@@ -46,7 +46,7 @@ export const SensorCard: React.FC<SensorCardProps> = ({
         </div>
 
         <div className="flex items-baseline gap-1.5 pt-0.5">
-          <span className="text-2xl font-bold font-mono tabular-nums text-[#0F4D3A] tracking-tight">
+          <span className="text-2xl font-bold font-mono tabular-nums text-[#5494DA] tracking-tight">
             {sensor.currentValue}
           </span>
           <span className="text-xs font-mono text-[#587068] font-normal">{sensor.unit}</span>

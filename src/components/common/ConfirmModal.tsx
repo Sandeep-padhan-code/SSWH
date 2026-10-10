@@ -50,7 +50,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
         <div className="flex items-start gap-4">
           <div
             className={`rounded-full p-3 ${
-              isDangerous ? 'bg-[#FFF2F2] text-[#C83D3D]' : 'bg-[#E8F5F0] text-[#075B48]'
+              isDangerous ? 'bg-[#FFF2F2] text-[#C83D3D]' : 'bg-[#5494DA]/10 text-[#5494DA]'
             }`}
           >
             {isDangerous ? <AlertTriangle className="h-6 w-6" /> : <ShieldAlert className="h-6 w-6" />}
@@ -58,7 +58,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
 
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-[#10231F]">{title}</h3>
-            <p className="mt-1 text-xs font-mono font-medium text-[#075B48]">
+            <p className="mt-1 text-xs font-mono font-medium text-[#5494DA]">
               Target Equipment: <span className="text-[#10231F] font-bold">{deviceLabel}</span>
             </p>
             <p className="mt-2 text-sm leading-relaxed text-[#63736E]">{message}</p>
@@ -66,7 +66,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
         </div>
 
         <div className="mt-4 rounded-lg bg-[#F7F9F8] p-3 border border-[#E5EEE9] text-[11px] text-[#587068] font-mono flex items-center gap-2">
-          <ShieldAlert className="h-4 w-4 text-[#075B48] shrink-0" />
+          <ShieldAlert className="h-4 w-4 text-[#5494DA] shrink-0" />
           <span>This action will be authorized and recorded in the SCADA audit log.</span>
         </div>
 
@@ -86,7 +86,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
             className={`rounded-lg px-4 py-2 text-xs font-semibold text-white transition-colors ${
               isDangerous
                 ? 'bg-[#C83D3D] hover:bg-[#A82D2D]'
-                : 'bg-[#075B48] hover:bg-[#054436]'
+                : 'bg-[#5494DA] hover:bg-[#73B9EE]'
             }`}
           >
             {isLoading ? 'Executing API Action...' : actionLabel}
