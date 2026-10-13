@@ -1,6 +1,6 @@
 import React from 'react'
 import { ArrowRight, Activity, ChevronDown } from 'lucide-react'
-import heroImage from '@/assets/sswh-landscape.jpg'
+import heroImage from '@/assets/sswh-light-hero.png'
 import sswhLogo from '@/Logo/SSWH-LOGO.jpg'
 
 interface HeroSectionProps {
@@ -10,7 +10,7 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onExploreClick }) => {
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden select-none">
+    <section className="landing-hero relative min-h-screen w-full flex flex-col justify-between overflow-hidden select-none">
       {/* Cinematic Background Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-slate-950">
         <img
@@ -22,8 +22,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onExplor
         />
 
         {/* Subtle cinematic overlays for legibility while keeping nature luminous */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060c0e] via-[#060c0e]/30 to-black/50 pointer-events-none" />
-        <div className="absolute inset-0 bg-radial from-transparent via-transparent to-black/40 pointer-events-none" />
+        <div className="absolute inset-0 hero-image-overlay pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-l from-white/10 via-transparent to-transparent pointer-events-none" />
       </div>
 
       {/* Spacer to push content down below the nav */}
@@ -65,7 +65,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onExplor
 
             <button
               onClick={onExploreClick}
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 bg-slate-950/60 hover:bg-slate-900/80 text-white hover:text-[#73B9EE] border border-white/20 hover:border-[#5494DA]/50 backdrop-blur-md text-xs font-mono tracking-[0.16em] uppercase rounded-sm transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 bg-white/85 hover:bg-white text-[#0E1B2A] hover:text-[#5494DA] border border-white/70 hover:border-[#5494DA]/50 backdrop-blur-md text-xs font-mono tracking-[0.16em] uppercase rounded-sm transition-all duration-300 shadow-sm"
             >
               <Activity className="w-3.5 h-3.5 text-[#5494DA]" />
               <span>EXPLORE PLATFORM</span>

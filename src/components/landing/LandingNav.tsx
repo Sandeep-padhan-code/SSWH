@@ -57,9 +57,9 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
   }
 
   return (
-    <header ref={ref} className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#050b14]/90 backdrop-blur-md">
+    <header ref={ref} className="fixed inset-x-0 top-0 z-50 border-b border-white/10 border-[#D1E2F5] bg-[#F9FCFF]/95 backdrop-blur-md transition-colors">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5 text-white group">
+        <Link to="/" className="flex items-center gap-2.5 text-[#0E1B2A] group">
           <img
             src={sswhLogo}
             alt="SSWH Logo"
@@ -81,7 +81,7 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
                 onClick={() => setOpen(open === label ? null : label)}
                 onMouseEnter={() => setOpen(label)}
                 aria-expanded={open === label}
-                className="flex items-center gap-1.5 rounded-md px-3.5 py-2 text-xs font-mono tracking-wider uppercase text-slate-200 hover:bg-white/10 hover:text-[#73B9EE] transition-colors"
+                className="flex items-center gap-1.5 rounded-md px-3.5 py-2 text-xs font-mono tracking-wider uppercase text-[#4A637D] hover:bg-[#EAF3FD] hover:text-[#5494DA] transition-colors"
               >
                 <span>{label}</span>
                 <ChevronDown className="h-3.5 w-3.5 text-[#5494DA]" />
@@ -90,7 +90,7 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
               {open === label && (
                 <div
                   onMouseLeave={() => setOpen(null)}
-                  className="absolute left-0 top-full mt-1 w-80 rounded-sm border border-white/10 bg-[#060e14] p-2 shadow-2xl backdrop-blur-xl"
+                  className="absolute left-0 top-full mt-1 w-80 rounded-sm border border-[#D1E2F5] bg-white p-2 shadow-2xl backdrop-blur-xl"
                 >
                   <p className="px-3 pb-2 pt-1 text-[10px] font-mono font-semibold uppercase tracking-[.18em] text-[#5494DA]">
                     {label}
@@ -101,19 +101,19 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
                         key={item.title}
                         to={item.path}
                         onClick={() => setOpen(null)}
-                        className="block rounded-sm px-3 py-2.5 hover:bg-white/10 transition-colors"
+                        className="block rounded-sm px-3 py-2.5 hover:bg-[#EAF3FD] transition-colors"
                       >
-                        <b className="block text-xs font-sans font-medium text-white">{item.title}</b>
-                        <span className="mt-0.5 block text-[11px] leading-4 text-slate-400 font-light">{item.description}</span>
+                        <b className="block text-xs font-sans font-medium text-[#0E1B2A]">{item.title}</b>
+                        <span className="mt-0.5 block text-[11px] leading-4 text-[#4A637D] font-light">{item.description}</span>
                       </Link>
                     ) : (
                       <button
                         key={item.title}
                         onClick={() => handleNavClick(item)}
-                        className="w-full text-left rounded-sm px-3 py-2.5 hover:bg-white/10 transition-colors cursor-pointer"
+                        className="w-full text-left rounded-sm px-3 py-2.5 hover:bg-[#EAF3FD] transition-colors cursor-pointer"
                       >
-                        <b className="block text-xs font-sans font-medium text-white">{item.title}</b>
-                        <span className="mt-0.5 block text-[11px] leading-4 text-slate-400 font-light">{item.description}</span>
+                        <b className="block text-xs font-sans font-medium text-[#0E1B2A]">{item.title}</b>
+                        <span className="mt-0.5 block text-[11px] leading-4 text-[#4A637D] font-light">{item.description}</span>
                       </button>
                     )
                   )}
@@ -137,7 +137,7 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobile(!mobile)}
-          className="p-2 text-white sm:hidden"
+          className="p-2 text-[#0E1B2A] sm:hidden"
           aria-label="Toggle menu"
         >
           {mobile ? <X /> : <Menu />}
@@ -146,17 +146,17 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
 
       {/* Mobile Drawer */}
       {mobile && (
-        <div className="border-t border-white/10 bg-[#060e14] px-5 py-4 sm:hidden">
+        <div className="border-t border-[#D1E2F5] bg-white px-5 py-4 sm:hidden">
           {Object.entries(menus).map(([label, items]) => (
-            <details key={label} className="border-b border-white/10 py-2">
-              <summary className="cursor-pointer text-xs font-mono uppercase text-[#73B9EE] py-1">{label}</summary>
+            <details key={label} className="border-b border-[#D1E2F5] py-2">
+              <summary className="cursor-pointer text-xs font-mono uppercase text-[#5494DA] py-1">{label}</summary>
               {items.map((i) =>
                 i.path ? (
                   <Link
                     key={i.title}
                     to={i.path}
                     onClick={() => setMobile(false)}
-                    className="block py-2 pl-3 text-xs text-slate-200"
+                    className="block py-2 pl-3 text-xs text-[#4A637D]"
                   >
                     {i.title}
                   </Link>
@@ -164,7 +164,7 @@ export const LandingNav: React.FC<LandingNavProps> = ({ onGetStarted }) => {
                   <button
                     key={i.title}
                     onClick={() => handleNavClick(i)}
-                    className="block w-full text-left py-2 pl-3 text-xs text-slate-200"
+                    className="block w-full text-left py-2 pl-3 text-xs text-[#4A637D]"
                   >
                     {i.title}
                   </button>

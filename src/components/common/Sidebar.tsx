@@ -137,7 +137,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, currentRole }
       {/* Sidebar Drawer */}
       <aside
         className={cn(
-          'fixed top-0 left-0 z-50 h-dvh w-[19rem] bg-white border-r border-[#D1E2F5] flex flex-col justify-between transition-transform duration-250 ease-out select-none shadow-2xl',
+          'fixed top-0 left-0 z-50 h-dvh w-[19rem] bg-white border-r border-[#D1E2F5] flex flex-col justify-between transition-transform duration-250 ease-out select-none shadow-2xl text-[#0E1B2A]',
           isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >

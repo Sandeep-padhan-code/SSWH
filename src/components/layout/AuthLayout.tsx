@@ -10,7 +10,7 @@ export const AuthLayout: React.FC = () => {
   >(null)
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#04080e] text-slate-100 selection:bg-[#5494DA] selection:text-white relative overflow-hidden">
+    <div className="auth-shell min-h-screen flex flex-col bg-[#F4F8FB] text-[#0E1B2A] selection:bg-[#5494DA] selection:text-white relative overflow-hidden">
       {/* Subtle Background Glows & Telemetry Grid */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#5494DA]/15 rounded-full blur-3xl" />
@@ -36,7 +36,7 @@ export const AuthLayout: React.FC = () => {
               />
 
               <div className="text-left">
-                <span className="font-serif text-2xl font-bold tracking-tight text-white block leading-none">
+                <span className="font-serif text-2xl font-bold tracking-tight text-[#0E1B2A] block leading-none">
                   SSWH
                 </span>
                 <span className="text-[10px] uppercase font-mono tracking-wider text-[#73B9EE] font-semibold">
@@ -45,18 +45,18 @@ export const AuthLayout: React.FC = () => {
               </div>
             </Link>
 
-            <p className="text-xs text-slate-400 font-sans font-light">
+            <p className="text-xs text-[#4A637D] font-sans font-light">
               Save Water Today. Live Life Tomorrow.
             </p>
           </div>
 
           {/* Auth Card Container */}
-          <div className="bg-[#07101a]/90 backdrop-blur-xl border border-[#5494DA]/30 rounded-xl p-6 sm:p-7 shadow-2xl shadow-black/60">
+          <div className="bg-white/90 backdrop-blur-xl border border-[#5494DA]/30 rounded-xl p-6 sm:p-7 shadow-xl">
             <Outlet />
           </div>
 
           {/* Compliance & Security Footer */}
-          <div className="text-center text-xs text-slate-400 space-y-2 font-mono">
+          <div className="text-center text-xs text-[#4A637D] space-y-2 font-mono">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#5494DA]/10 border border-[#5494DA]/30 text-[11px] text-[#86CEFA]">
               <ShieldCheck className="h-3.5 w-3.5" />
               <span>RBAC Enforced • End-to-End Telemetry Security</span>

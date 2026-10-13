@@ -162,7 +162,7 @@ export const Header: React.FC<HeaderProps> = ({
   const userEmail = user?.email || 'user@sswh.io'
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur border-b border-[#D1E2F5] px-4 lg:px-6">
+    <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur border-b border-[#D1E2F5] px-4 lg:px-6 transition-colors">
       <div className="flex items-center justify-between gap-4">
         {/* Left: Mobile Menu & Brand */}
         <div className="flex items-center gap-3">
@@ -228,7 +228,7 @@ export const Header: React.FC<HeaderProps> = ({
                     className="w-full px-3 py-2 text-left flex items-center justify-between hover:bg-[#F4F8F5] text-xs cursor-pointer transition-colors"
                   >
                     <div className="flex items-center gap-2">
-                      <Icon className="h-3.5 w-3.5 text-[#0B6B73]" />
+                      <Icon className="h-3.5 w-3.5 text-[#5494DA]" />
                       <span className="font-medium text-[#10251F]">{res.title}</span>
                     </div>
                     <span className="text-[10px] font-mono text-[#587068] bg-[#F4F8F5] px-1.5 py-0.5 rounded border border-[#E5EEE9]">
@@ -244,6 +244,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Right: Notifications & Authoritative User Identity Display */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Alarm Notifications Button */}
+
           <div className="relative">
             <button
               onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}

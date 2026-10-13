@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
 
   return (
     <>
-      <footer className="border-t border-[#D6E3DD] bg-white text-[#587068] text-xs mt-auto">
+      <footer className="border-t border-[#D1E2F5] bg-white text-[#587068] text-xs mt-auto transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-3">
           {/* Left: System Identification & Standards */}
           <div className="flex flex-wrap items-center gap-3 text-[#587068]">

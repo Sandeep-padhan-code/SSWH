@@ -48,8 +48,8 @@ const RoleDashboardRedirect: React.FC = () => {
 export function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <Routes>
+        <AuthProvider>
+          <Routes>
           {/* Public Cinematic Landing Experience */}
           <Route path="/" element={<LandingPage />} />
 

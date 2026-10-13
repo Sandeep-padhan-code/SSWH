@@ -17,7 +17,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ onOpenMenu, activeAlertCou
   ]
 
   return (
-    <nav aria-label="Mobile Navigation" className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-slate-200 px-3 py-1.5 shadow-sm">
+    <nav aria-label="Mobile Navigation" className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-slate-200 px-3 py-1.5 shadow-sm transition-colors">
       <div className="flex items-center justify-around">
         {quickItems.map((item) => {
           const Icon = item.icon

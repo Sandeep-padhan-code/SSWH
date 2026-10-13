@@ -86,7 +86,7 @@
     --secondary-blue: #73B9EE;
     --light-blue: #86CEFA;
 
-    /* Master SSWH Brand Color System */
+    /* Master SSWH Brand Color System (Light Mode) */
     --sswh-forest: #5494DA;
     --sswh-teal: #73B9EE;
     --sswh-green: #86CEFA;
@@ -145,11 +145,12 @@
     margin: 0;
     padding: 0;
     font-family: var(--font-sans);
-    background-color: #F4F8FB;
-    color: #0E1B2A;
+    background-color: var(--background);
+    color: var(--foreground);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   #root {
@@ -157,7 +158,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #F4F8FB;
+    background-color: var(--background);
   }
 
   /* Accessible focus indicators */
@@ -165,7 +166,70 @@
     outline: 2px solid #5494DA;
     outline-offset: 1px;
   }
+
 }
+
+/* Landing page: a permanent, bright water-management presentation. */
+.landing-shell {
+  background: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.hero-image-overlay {
+  background: linear-gradient(90deg, rgba(7, 29, 51, 0.84) 0%, rgba(7, 29, 51, 0.56) 46%, rgba(255, 255, 255, 0.08) 100%), linear-gradient(0deg, rgba(10, 41, 68, 0.58) 0%, transparent 54%);
+}
+
+.landing-shell > main > section:not(.landing-hero),
+.landing-shell > footer {
+  background-color: #f4f8fb !important;
+  border-color: #d1e2f5 !important;
+}
+
+.landing-shell > main > section:nth-child(even) {
+  background-color: #eaf3fd !important;
+}
+
+.landing-shell > main > section:not(.landing-hero) .text-white,
+.landing-shell > main > section:not(.landing-hero) .text-slate-300,
+.landing-shell > main > section:not(.landing-hero) .text-slate-200 {
+  color: #0e1b2a;
+}
+
+.landing-shell > main > section:not(.landing-hero) .text-slate-400,
+.landing-shell > main > section:not(.landing-hero) .text-slate-500 {
+  color: #4a637d;
+}
+
+.landing-shell > main > section:not(.landing-hero) .bg-slate-950,
+.landing-shell > main > section:not(.landing-hero) [class*="bg-slate-950/"],
+.landing-shell > main > section:not(.landing-hero) [class*="bg-white/5"] {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.landing-shell > main > section:not(.landing-hero) .border-white\/10,
+.landing-shell > main > section:not(.landing-hero) .border-white\/5,
+.landing-shell > main > section:not(.landing-hero) .border-white\/15 {
+  border-color: #d1e2f5 !important;
+}
+
+.landing-shell > footer .text-white { color: #0e1b2a; }
+.landing-shell > footer .text-slate-400,
+.landing-shell > footer .text-slate-500 { color: #4a637d; }
+.landing-shell > footer .border-white\/10 { border-color: #d1e2f5; }
+
+/* Recharts uses SVG text and an inline HTML tooltip, so it does not inherit
+   the surrounding card foreground automatically. */
+.recharts-cartesian-axis-tick-value,
+.recharts-legend-item-text { fill: #4a637d !important; color: #4a637d !important; }
+.recharts-cartesian-grid line { stroke: #d1e2f5 !important; }
+.recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border-color: #d1e2f5 !important;
+  color: #0e1b2a !important;
+  box-shadow: 0 8px 24px rgba(28, 66, 106, 0.12);
+}
+.recharts-default-tooltip * { color: #0e1b2a !important; }
 
 /* Tabular numbers for live telemetry and data tables */
 .tabular-nums {
@@ -190,6 +254,12 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+.auth-shell [class*="bg-slate-950"], .auth-shell [class*="bg-slate-900"] { background-color: #f0f6fd !important; }
+.auth-shell .text-white, .auth-shell .text-slate-100, .auth-shell .text-slate-300, .auth-shell .text-slate-200 { color: #0e1b2a !important; }
+.auth-shell .text-slate-400 { color: #4a637d !important; }
+.auth-shell .text-slate-500 { color: #6d869f !important; }
+.auth-shell [class*="border-slate-700"], .auth-shell [class*="border-slate-800"] { border-color: #d1e2f5 !important; }
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
@@ -220,4 +290,3 @@
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
-
