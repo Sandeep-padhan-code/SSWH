@@ -24,10 +24,6 @@ export const TeamSection: React.FC = () => {
 
       {/* Automatic Continuous Sliding Carousel Container */}
       <div className="relative w-full overflow-hidden select-none py-2">
-        {/* Gradient edge fades for cinematic depth */}
-        <div className="absolute top-0 bottom-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-[#05090b] to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-[#05090b] to-transparent z-10 pointer-events-none" />
-
         {/* Continuous Marquee Track */}
         <div className="animate-continuous-marquee flex items-stretch gap-6 px-4">
           {extendedTeam.map((member, index) => (
