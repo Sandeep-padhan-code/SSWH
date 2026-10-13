@@ -29,7 +29,7 @@ export const TeamSection: React.FC = () => {
           {extendedTeam.map((member, index) => (
             <div
               key={`${member.id}-${index}`}
-              className="w-[290px] sm:w-[340px] md:w-[380px] lg:w-[410px] shrink-0 flex flex-col justify-between bg-slate-950/80 border border-white/10 hover:border-[#5494DA]/50 rounded-sm p-6 transition-all duration-300 backdrop-blur-sm group"
+              className="w-[290px] sm:w-[340px] md:w-[380px] lg:w-[410px] shrink-0 flex flex-col justify-between bg-slate-950/80 border border-white/10 hover:border-[#5494DA]/50 rounded-sm p-6 transition-all duration-1000 backdrop-blur-sm group"
             >
               <div>
                 {/* Card Header Tag */}
@@ -47,7 +47,7 @@ export const TeamSection: React.FC = () => {
                   <img
                     src={member.image}
                     alt={`${member.name} - ${member.role}`}
-                    className="w-full h-full object-cover object-top filter grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-500"
+                    className="w-full h-full object-cover object-top filter grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-1000"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-70" />

@@ -4,6 +4,12 @@ import satwikImg from '@/memberpics/Satwik-raj-panda.png'
 import sandeepImg from '@/memberpics/Sandeep-padhan.jpeg'
 import anushkaImg from '@/memberpics/Anushka-poddar.jpeg'
 import santoshiImg from '@/memberpics/M.santoshi.jpeg'
+import pratikImg from '@/memberpics/pratik-dada.png'
+import swagatikaImg from '@/memberpics/swagatika-Pradhan.png'
+import saswatikaImg from '@/memberpics/saswatika-das.png'
+import snehaImg from '@/memberpics/sneha-jain.png'
+import ashishImg from '@/memberpics/ashish-palo.png'
+import soumyaImg from '@/memberpics/soumya-ranjan-padhi.png'
 
 export interface TeamMember {
   id: string
@@ -68,12 +74,72 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: '06',
-    name: 'M. Santoshi',
+    name: 'M.Santoshi',
     role: 'Research and Development & App Development',
     contribution:
       'Conducted extensive domain research on water conservation algorithms, statutory metrics, and optimization prerequisites to ground the project logically. Collaborated on the mobile interface execution, aligning features with researched UI/UX benchmarks for optimal utility.',
     image: santoshiImg,
     badge: 'R&D & UX',
     tags: ['Hydrological R&D', 'Conservation Logic', 'UI/UX'],
+  },
+  {
+    id: '07',
+    name: 'Pratik Tripathy',
+    role: 'Research and Development & Web Development',
+    contribution:
+      'Conducted extensive domain research on water conservation algorithms, statutory metrics, and optimization prerequisites to ground the project logically. Collaborated on the mobile interface execution, aligning features with researched UI/UX benchmarks for optimal utility.',
+    image: pratikImg,
+    badge: 'R&D & Web-Development',
+    tags: ['Hydrological R&D', 'Conservation Logic', 'Web Development'],
+  },
+  {
+    id: '08',
+    name: 'Saswatika Das',
+    role: 'Research and Development & Web Development',
+    contribution:
+      'Conducted extensive domain research on water conservation algorithms, statutory metrics, and optimization prerequisites to ground the project logically. Collaborated on the mobile interface execution, aligning features with researched UI/UX benchmarks for optimal utility.',
+    image: saswatikaImg,
+    badge: 'R&D & Web-Development',
+    tags: ['Hydrological R&D', 'Conservation Logic', 'Web Development'],
+  },
+  {
+    id: '09',
+    name: 'Swagatika Pradhan',
+    role: 'Web Development',
+    contribution:
+      'Conducted extensive domain research on water conservation algorithms, statutory metrics, and optimization prerequisites to ground the project logically. Collaborated on the mobile interface execution, aligning features with researched UI/UX benchmarks for optimal utility.',
+    image: swagatikaImg,
+    badge: 'Web Development',
+    tags: ['Hydrological R&D', 'Conservation Logic', 'Web Development'],
+  },
+  {
+    id: '10',
+    name: 'Sneha Jain',
+    role: 'IoT Engineer',
+    contribution:
+      'Conducted extensive domain research on water conservation algorithms, statutory metrics, and optimization prerequisites to ground the project logically. Collaborated on the mobile interface execution, aligning features with researched UI/UX benchmarks for optimal utility.',
+    image: snehaImg,
+    badge: 'IoT Engineer',
+    tags: ['Hydrological R&D', 'Conservation Logic', 'Web Development'],
+  },
+  {
+    id: '11',
+    name: 'Ashish Palo',
+    role: 'Hardware Engineer',
+    contribution:
+      'Conducted extensive domain research on water conservation algorithms, statutory metrics, and optimization prerequisites to ground the project logically. Collaborated on the mobile interface execution, aligning features with researched UI/UX benchmarks for optimal utility.',
+    image: ashishImg,
+    badge: 'Hardware Engineer',
+    tags: ['Hydrological R&D', 'Conservation Logic', 'Web Development'],
+  },
+  {
+    id: '12',
+    name: 'Soumya Ranjan Padhi',
+    role: 'Hardware Engineer',
+    contribution:
+      'Conducted extensive domain research on water conservation algorithms, statutory metrics, and optimization prerequisites to ground the project logically. Collaborated on the mobile interface execution, aligning features with researched UI/UX benchmarks for optimal utility.',
+    image: soumyaImg,
+    badge: 'Hardware Engineer',
+    tags: ['Hydrological R&D', 'Conservation Logic', 'Web Development'],
   },
 ]

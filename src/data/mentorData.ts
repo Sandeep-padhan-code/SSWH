@@ -17,7 +17,7 @@ export interface Mentor {
 export const mentorsData: Mentor[] = [
   {
     id: 'ranjit-patnaik',
-    label: 'DIRECTOR / 01',
+    label: 'DIRECTOR',
     name: 'Ranjit Patnaik',
     role: 'Director',
     image: ranjitImg,
@@ -30,7 +30,7 @@ export const mentorsData: Mentor[] = [
   },
   {
     id: 'raghavendra-kumar',
-    label: 'MENTOR / 02',
+    label: 'MENTOR',
     name: 'Raghavendra Kumar',
     role: 'Mentor',
     image: raghavendraImg,

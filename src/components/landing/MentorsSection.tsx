@@ -213,7 +213,7 @@ export const MentorsSection: React.FC = () => {
               id="director-profile-panel"
               className="flex-1 min-w-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
-              <div className="flex h-full min-w-0 flex-col justify-between bg-gradient-to-br from-[#08121f] via-[#05090b] to-[#040809] p-6 sm:p-8 lg:p-10">
+              <div className="flex h-full min-w-0 flex-col justify-between bg-gradient-to-br from-[#f0f6fd] via-[#eaf3fd] to-[#e4effb] p-6 sm:p-8 lg:p-10">
                 <div className="space-y-6">
                   <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
                     <span className="rounded-sm border border-[#5494DA]/30 bg-[#5494DA]/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#73B9EE]">
@@ -295,7 +295,7 @@ export const MentorsSection: React.FC = () => {
               id="mentor-profile-panel"
               className="order-2 md:order-1 flex-1 min-w-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
-              <div className="flex h-full min-w-0 flex-col justify-between bg-gradient-to-br from-[#08121f] via-[#05090b] to-[#040809] p-6 sm:p-8 lg:p-10">
+              <div className="flex h-full min-w-0 flex-col justify-between bg-gradient-to-br from-[#f0f6fd] via-[#eaf3fd] to-[#e4effb] p-6 sm:p-8 lg:p-10">
                 <div className="space-y-6">
                   <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
                     <span className="rounded-sm border border-[#5494DA]/30 bg-[#5494DA]/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#73B9EE]">
